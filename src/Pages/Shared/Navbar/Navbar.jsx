@@ -1,21 +1,20 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
-// import { FaUserCircle, FaUtensils } from "react-icons/fa";
-// import { toast, ToastContainer } from "react-toastify";
-// import AuthContext from "../../Context/AuthContext";
+import useAuth from "../../../Hooks/useAuth/useAuth";
+import { toast, ToastContainer } from "react-toastify";
 
 const Navbar = () => {
-  //   const { user, UserSignOut } = useContext(AuthContext);
+  const { user, UserSignOut } = useAuth();
 
-  //   const handleSignOut = () => {
-  //     UserSignOut()
-  //       .then(() => {
-  //         toast.success("You signed out successfully!");
-  //       })
-  //       .catch((error) => {
-  //         toast.error(error.message);
-  //       });
-  //   };
+  const handleSignOut = () => {
+    UserSignOut()
+      .then(() => {
+        toast.success("You signed out successfully!");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   const links = (
     <>
@@ -35,7 +34,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-4 md:px-10 sticky top-0 z-50">
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <div className="navbar-start">
         {/* Mobile Dropdown */}
         <div className="dropdown">
@@ -80,9 +79,7 @@ const Navbar = () => {
 
       {/* User Section */}
       <div className="navbar-end flex items-center gap-3">
-        <button>Login</button>
-        <button>Register</button>
-        {/* {user ? (
+        {user ? (
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="m-1">
               <div
@@ -106,13 +103,7 @@ const Navbar = () => {
               className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
             >
               <li>
-                <NavLink to="/add-reviews">Add Reviews</NavLink>
-              </li>
-              <li>
-                <NavLink to="/my-reviews">My Reviews</NavLink>
-              </li>
-              <li>
-                <NavLink to="/my-favorites">My Favorites</NavLink>
+                <NavLink to="/my-favorites">My Profile</NavLink>
               </li>
               <li>
                 <button
@@ -125,10 +116,15 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <Link to="/auth/login" className="btn btn-primary btn-sm">
-            Login
-          </Link>
-        )} */}
+          <div className="flex gap-2">
+            <Link to="/auth/login" className="btn btn-primary btn-sm">
+              Login
+            </Link>
+            <Link to="/auth/login" className="btn btn-outline btn-sm">
+              Register
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
