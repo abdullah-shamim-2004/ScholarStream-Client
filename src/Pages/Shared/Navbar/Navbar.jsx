@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import { toast, ToastContainer } from "react-toastify";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, UserSignOut } = useAuth();
@@ -88,8 +89,8 @@ const Navbar = () => {
               >
                 {user.photoURL ? (
                   <img
-                    src={user.photoURL}
-                    alt={user.displayName || "User"}
+                    src={user?.photoURL}
+                    alt={user?.displayName || "User"}
                     className="w-10 h-10 rounded-full border cursor-pointer"
                   />
                 ) : (
@@ -108,7 +109,7 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={handleSignOut}
-                  className="btn btn-outline btn-primary btn-sm"
+                  // className="btn btn-outline btn-primary btn-sm"
                 >
                   Logout
                 </button>
@@ -120,7 +121,7 @@ const Navbar = () => {
             <Link to="/auth/login" className="btn btn-primary btn-sm">
               Login
             </Link>
-            <Link to="/auth/login" className="btn btn-outline btn-sm">
+            <Link to="/auth/register" className="btn btn-outline btn-sm">
               Register
             </Link>
           </div>
