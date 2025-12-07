@@ -6,6 +6,7 @@ import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
+import MyProfile from "../Pages/DashBoard/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
         <DashBoardLayout></DashBoardLayout>
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "my-profile",
+        Component: MyProfile,
+      },
+    ],
   },
 ]);
 export default router;

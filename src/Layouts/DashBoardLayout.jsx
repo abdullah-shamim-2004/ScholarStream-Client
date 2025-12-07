@@ -81,7 +81,7 @@ const DashBoardLayout = () => {
 "
               >
                <CgProfile />
-                <span className="is-drawer-close:hidden"> My Profile</span>
+                <span className="is-drawer-close:hidden">My Profile</span>
               </NavLink>
             </li>
 
