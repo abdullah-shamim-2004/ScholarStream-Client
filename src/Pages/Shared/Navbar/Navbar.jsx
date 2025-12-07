@@ -104,12 +104,12 @@ const Navbar = () => {
               className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
             >
               <li>
-                <NavLink to="/my-favorites">My Profile</NavLink>
+                <NavLink to="/dashboard">DashBoard</NavLink>
               </li>
               <li>
                 <button
                   onClick={handleSignOut}
-                  // className="btn btn-outline btn-primary btn-sm"
+                  className="btn btn-outline btn-primary btn-sm"
                 >
                   Logout
                 </button>
