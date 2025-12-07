@@ -3,6 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { FaHistory, FaUser } from "react-icons/fa";
 import { LuBike } from "react-icons/lu";
+import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
 
 const DashBoardLayout = () => {
@@ -72,7 +73,7 @@ const DashBoardLayout = () => {
                 <span className="is-drawer-close:hidden">Homepage</span>
               </Link>
             </li>
-            {/* My parcel link */}
+            {/* My Profile*/}
             <li>
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
@@ -80,8 +81,20 @@ const DashBoardLayout = () => {
                 to="/dashboard/my-profile
 "
               >
-               <CgProfile />
+                <CgProfile />
                 <span className="is-drawer-close:hidden">My Profile</span>
+              </NavLink>
+            </li>
+            {/* AddScholarShip */}
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Add Scholarship"
+                to="/dashboard/add-scholarship
+"
+              >
+                <TiDocumentAdd />
+                <span className="is-drawer-close:hidden">Add ScholarShip</span>
               </NavLink>
             </li>
 

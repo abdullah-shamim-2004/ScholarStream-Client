@@ -7,6 +7,8 @@ import Register from "../Pages/Auth/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MyProfile from "../Pages/DashBoard/MyProfile/MyProfile";
+import AllScholarships from "../Pages/Scholarships/AllScholarships/AllScholarships";
+import AddScholarShip from "../Pages/DashBoard/AddScholarShip/AddScholarShip";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,11 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/scholarships",
+        Component: AllScholarships,
+        loader: () => fetch("/scholarship.json").then((res) => res.json()),
       },
     ],
   },
@@ -44,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "my-profile",
         Component: MyProfile,
+      },
+      {
+        path: "add-scholarship",
+        Component: AddScholarShip,
       },
     ],
   },
