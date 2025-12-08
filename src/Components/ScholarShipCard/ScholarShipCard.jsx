@@ -1,5 +1,6 @@
 import React from "react";
 import { FaGlobe, FaUniversity } from "react-icons/fa";
+import { Link } from "react-router";
 
 const ScholarShipCard = ({ item }) => {
   return (
@@ -47,9 +48,12 @@ const ScholarShipCard = ({ item }) => {
 
         {/* Buttons */}
         <div className="card-actions mt-4">
-          <button className="btn btn-primary btn-sm w-full">
+          <Link
+            to={`/scholarships/${item._id}`}
+            className="btn btn-primary btn-sm w-full"
+          >
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>

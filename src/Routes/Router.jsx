@@ -11,6 +11,7 @@ import AllScholarships from "../Pages/Scholarships/AllScholarships/AllScholarshi
 import AddScholarShip from "../Pages/DashBoard/AddScholarShip/AddScholarShip";
 import ManageScholarships from "../Pages/DashBoard/ManageScholarships/ManageScholarships";
 import EditScholarship from "../Pages/DashBoard/ManageScholarships/EditScholarship";
+import ScholarShipDetails from "../Components/ScholarShipDetails/ScholarShipDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       {
         path: "/scholarships",
         Component: AllScholarships,
-        loader: () => fetch("/scholarship.json").then((res) => res.json()),
+        // loader: () => fetch("/scholarship.json").then((res) => res.json()),
+      },
+      {
+        path: "/scholarships/:id",
+        Component: ScholarShipDetails,
       },
     ],
   },
