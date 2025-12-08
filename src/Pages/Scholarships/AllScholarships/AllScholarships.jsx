@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaGlobe, FaUniversity } from "react-icons/fa";
-import { useLoaderData } from "react-router";
+// import { useLoaderData } from "react-router";
 import ScholarShipCard from "../../../Components/ScholarShipCard/ScholarShipCard";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../../Hooks/useAxios/useAxios";
+import Loader from "../../../Components/Loader/Loader";
+// import useSecure from "../../../Hooks/useSecure/useSecure";
 
 const AllScholarships = () => {
-  const scholarship = useLoaderData();
-  console.log(scholarship);
+  const axiosInstance = useAxios();
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  const {
+    data: scholarships = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["AllScholarship", debouncedSearch],
+    queryFn: async () => {
+      const res = await axiosInstance.get(
+        `/scholarships?search=${debouncedSearch}`
+      );
+      return res.data;
+    },
+    enabled: true,
+  });
+
+  // input handler
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  if (error) return <h2>Error</h2>;
+
+  const showLoader = isLoading;
 
   return (
     <div className="px-4 py-10">
@@ -20,12 +57,11 @@ const AllScholarships = () => {
         <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
 
         <input
+          onChange={handleSearch}
           type="text"
           placeholder="Search scholarships..."
           className="input input-bordered rounded-xl w-60 shadow-sm"
         />
-
-      
 
         {/* Subject Filter */}
         <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
@@ -53,7 +89,7 @@ const AllScholarships = () => {
           <option>Tuition Waiver</option>
           <option>Fellowship</option>
         </select>
-          {/* Location Filter */}
+        {/* Location Filter */}
         <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
 
         <select className="select select-bordered rounded-xl w-40 shadow-sm">
@@ -81,11 +117,21 @@ const AllScholarships = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-        {scholarship.map((item, index) => (
-          <ScholarShipCard key={index} item={item}></ScholarShipCard>
-        ))}
-      </div>
+      {showLoader ? (
+        <Loader></Loader>
+      ) : scholarships.length === 0 ? (
+        <div className="flex flex-col justify-center items-center h-[60vh] text-center">
+          <h2 className="text-4xl font-bold text-gray-600 mb-3">
+            No ScholarShips Found
+          </h2>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+          {scholarships.map((item, index) => (
+            <ScholarShipCard key={index} item={item}></ScholarShipCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
