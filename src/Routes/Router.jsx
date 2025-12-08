@@ -9,6 +9,8 @@ import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MyProfile from "../Pages/DashBoard/MyProfile/MyProfile";
 import AllScholarships from "../Pages/Scholarships/AllScholarships/AllScholarships";
 import AddScholarShip from "../Pages/DashBoard/AddScholarShip/AddScholarShip";
+import ManageScholarships from "../Pages/DashBoard/ManageScholarships/ManageScholarships";
+import EditScholarship from "../Pages/DashBoard/ManageScholarships/EditScholarship";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: "add-scholarship",
         Component: AddScholarShip,
+      },
+      {
+        path: "manage-scholarship",
+        Component: ManageScholarships,
+      },
+      {
+        path: "edit-scholarship/:id",
+        Component: EditScholarship,
       },
     ],
   },

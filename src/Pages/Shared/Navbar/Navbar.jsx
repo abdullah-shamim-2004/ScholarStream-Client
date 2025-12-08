@@ -106,7 +106,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={0}
-              className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
+              className="dropdown-content menu gap-2 bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
             >
               <li>
                 <NavLink to="/dashboard">DashBoard</NavLink>

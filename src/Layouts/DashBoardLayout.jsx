@@ -2,6 +2,7 @@ import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaSlidersH, FaUser } from "react-icons/fa";
 import { IoMdHome, IoMdSettings } from "react-icons/io";
+import { MdEditDocument } from "react-icons/md";
 import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
 
@@ -18,7 +19,7 @@ const DashBoardLayout = () => {
             className="btn btn-square btn-ghost"
           >
             {/* Sidebar toggle icon */}
-           <FaSlidersH />
+            <FaSlidersH />
           </label>
           <div className="px-4">ScholarStream DashBoard</div>
         </nav>
@@ -59,7 +60,7 @@ const DashBoardLayout = () => {
                 <span className="is-drawer-close:hidden">My Profile</span>
               </NavLink>
             </li>
-            {/* AddScholarShip */}
+            {/* Add ScholarShip */}
             <li>
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
@@ -69,6 +70,20 @@ const DashBoardLayout = () => {
               >
                 <TiDocumentAdd size={20} />
                 <span className="is-drawer-close:hidden">Add ScholarShip</span>
+              </NavLink>
+            </li>
+            {/* Manage ScholarShip */}
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Manage Scholarship"
+                to="/dashboard/manage-scholarship
+"
+              >
+                <MdEditDocument size={20} />
+                <span className="is-drawer-close:hidden">
+                  Manage ScholarShip
+                </span>
               </NavLink>
             </li>
 

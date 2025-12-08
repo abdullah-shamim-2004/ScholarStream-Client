@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FaGlobe, FaUniversity } from "react-icons/fa";
-// import { useLoaderData } from "react-router";
+// import { FaGlobe, FaUniversity } from "react-icons/fa";
 import ScholarShipCard from "../../../Components/ScholarShipCard/ScholarShipCard";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios/useAxios";
 import Loader from "../../../Components/Loader/Loader";
-// import useSecure from "../../../Hooks/useSecure/useSecure";
 
 const AllScholarships = () => {
   const axiosInstance = useAxios();
@@ -23,6 +21,7 @@ const AllScholarships = () => {
   const {
     data: scholarships = [],
     isLoading,
+    isFetching,
     error,
   } = useQuery({
     queryKey: ["AllScholarship", debouncedSearch],
@@ -41,8 +40,6 @@ const AllScholarships = () => {
   };
 
   if (error) return <h2>Error</h2>;
-
-  const showLoader = isLoading;
 
   return (
     <div className="px-4 py-10">
@@ -117,7 +114,7 @@ const AllScholarships = () => {
       </div>
 
       {/* Grid */}
-      {showLoader ? (
+      {isLoading || isFetching ? (
         <Loader></Loader>
       ) : scholarships.length === 0 ? (
         <div className="flex flex-col justify-center items-center h-[60vh] text-center">
