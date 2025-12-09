@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios/useAxios";
 import Loader from "../Loader/Loader";
 
@@ -21,6 +21,7 @@ const ScholarShipDetails = () => {
     },
   });
   const {
+    _id,
     scholarshipName,
     universityName,
     image,
@@ -126,7 +127,12 @@ const ScholarShipDetails = () => {
 
       {/* Button */}
       <div className="text-center mt-8">
-        <button className="btn btn-primary px-10 text-white">Apply Now</button>
+        <Link
+          to={`/payment/${_id}`}
+          className="btn btn-primary px-10 text-white"
+        >
+          Apply Now
+        </Link>
       </div>
     </div>
   );

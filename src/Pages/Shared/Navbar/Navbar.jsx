@@ -29,6 +29,11 @@ const Navbar = () => {
           Scholarships
         </NavLink>
       </li>
+      {/* <li>
+        <NavLink to="/payment/:id" className="nav-link">
+          Payment
+        </NavLink>
+      </li> */}
 
       <li>
         <NavLink to="/about-us" className="nav-link">
