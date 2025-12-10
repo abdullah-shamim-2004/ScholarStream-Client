@@ -22,7 +22,7 @@ const PaymentSuccess = () => {
       })
       .catch((err) => console.log(err.response.data));
   }, [sessionId, axiosSecure]);
-//   console.log(paymentData);
+  console.log(paymentData);
   if (!paymentData) {
     return <Loader />;
   }

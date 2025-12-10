@@ -15,6 +15,7 @@ import ScholarShipDetails from "../Components/ScholarShipDetails/ScholarShipDeta
 import Payment from "../Pages/Payments/Payment";
 import PaymentSuccess from "../Pages/Payments/PaymentSuccess";
 import PaymentFailed from "../Pages/Payments/PaymentFailed";
+import MyApplications from "../Pages/DashBoard/MyApplications/MyApplications";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "edit-scholarship/:id",
         Component: EditScholarship,
+      },
+      {
+        path: "my-applications",
+        Component: MyApplications,
       },
     ],
   },

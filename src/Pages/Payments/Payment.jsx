@@ -16,8 +16,17 @@ const Payment = () => {
       return res.data;
     },
   });
-//   console.log(scholarship);
+  //   console.log(scholarship);
   const handlePayment = async () => {
+    // Store data for payment failure page
+    localStorage.setItem("scholarshipId", scholarship._id);
+    localStorage.setItem("scholarshipName", scholarship.scholarshipName);
+    localStorage.setItem("universityName", scholarship.universityName);
+    localStorage.setItem(
+      "amount",
+      Number(scholarship.applicationFees) + Number(scholarship.serviceCharge)
+    );
+
     const paymentInfo = {
       amount:
         Number(scholarship.applicationFees) + Number(scholarship.serviceCharge),

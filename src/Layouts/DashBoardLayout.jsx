@@ -1,6 +1,6 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
-import { FaSlidersH, FaUser } from "react-icons/fa";
+import { FaRegFileAlt, FaSlidersH, FaUser } from "react-icons/fa";
 import { IoMdHome, IoMdSettings } from "react-icons/io";
 import { MdEditDocument } from "react-icons/md";
 import { TiDocumentAdd } from "react-icons/ti";
@@ -97,6 +97,17 @@ const DashBoardLayout = () => {
               >
                 <FaUser size={20} />
                 <span className="is-drawer-close:hidden">Users Managment </span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Applications"
+                to="/dashboard/my-applications 
+"
+              >
+                <FaRegFileAlt size={20} />
+                <span className="is-drawer-close:hidden">My Applications</span>
               </NavLink>
             </li>
 
