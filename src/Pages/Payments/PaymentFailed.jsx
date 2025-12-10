@@ -26,7 +26,7 @@ const PaymentFailed = () => {
     const amount = localStorage.getItem("amount");
     // console.log(amount);
 
-    if (!scholarshipId) return;
+    if ((!scholarshipId, scholarshipName)) return;
 
     // Update state for rendering
     // setScholarshipData({
@@ -46,7 +46,6 @@ const PaymentFailed = () => {
         userEmail: user.email,
       })
       .then((res) => {
-      
         console.log(res.data.result);
         setScholarshipData(res.data.result);
       });
@@ -66,7 +65,10 @@ const PaymentFailed = () => {
         University: {scholarshipData.universityName}
       </p>
 
-      <Link to="/dashboard" className="btn btn-primary w-full mt-6">
+      <Link
+        to="/dashboard/my-applications"
+        className="btn btn-primary w-full mt-6"
+      >
         Return to Dashboard
       </Link>
     </div>

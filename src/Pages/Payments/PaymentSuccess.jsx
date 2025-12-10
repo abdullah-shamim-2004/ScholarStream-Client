@@ -42,10 +42,7 @@ const PaymentSuccess = () => {
       <p className="text-center mb-4">
         Transaction ID: {paymentData.transactionId}
       </p>
-      <Link
-        className="btn btn-primary w-full"
-        // onClick={() => (window.location.href = "/my-applications")}
-      >
+      <Link to="/dashboard/my-applications" className="btn btn-primary w-full">
         Go to My Applications
       </Link>
     </div>
