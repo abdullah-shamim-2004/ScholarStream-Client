@@ -3,6 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegFileAlt, FaSlidersH, FaUser } from "react-icons/fa";
 import { IoMdHome, IoMdSettings } from "react-icons/io";
 import { MdEditDocument } from "react-icons/md";
+import { RiMessageLine } from "react-icons/ri";
 import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
 
@@ -99,6 +100,8 @@ const DashBoardLayout = () => {
                 <span className="is-drawer-close:hidden">Users Managment </span>
               </NavLink>
             </li>
+
+            {/* My applications */}
             <li>
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
@@ -108,6 +111,18 @@ const DashBoardLayout = () => {
               >
                 <FaRegFileAlt size={20} />
                 <span className="is-drawer-close:hidden">My Applications</span>
+              </NavLink>
+            </li>
+            {/* My reviews */}
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Reviews"
+                to="/dashboard/my-reviews 
+"
+              >
+                <RiMessageLine size={20} />
+                <span className="is-drawer-close:hidden">My Reviews</span>
               </NavLink>
             </li>
 

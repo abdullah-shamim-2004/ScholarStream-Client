@@ -42,7 +42,7 @@ const MyApplications = () => {
         amount: application.amount,
         studentEmail: application.userEmail,
       });
-      window.location.href = res.data.url;
+      window.location.href = res?.data?.url;
     } catch (error) {
       console.log(error);
     }
@@ -80,6 +80,7 @@ const MyApplications = () => {
     try {
       const payload = {
         scholarshipId: appliInfo.scholarshipId,
+        scholarshipName: appliInfo.scholarshipName,
         universityName: appliInfo.universityName,
         userName: user.displayName,
         userEmail: user.email,
