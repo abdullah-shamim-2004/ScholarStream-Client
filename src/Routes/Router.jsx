@@ -19,6 +19,8 @@ import MyApplications from "../Pages/DashBoard/MyApplications/MyApplications";
 import MyReviews from "../Pages/DashBoard/MyReviews/MyReviews";
 import ManageApplications from "../Pages/DashBoard/ManageApplications/ManageApplications";
 import ManageUser from "../Pages/DashBoard/ManageUser/ManageUser";
+import AboutUs from "../Components/AboutUs/AboutUs";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +34,6 @@ const router = createBrowserRouter([
       {
         path: "/scholarships",
         Component: AllScholarships,
-        // loader: () => fetch("/scholarship.json").then((res) => res.json()),
       },
       {
         path: "/scholarships/:id",
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/payment-failed",
         Component: PaymentFailed,
+      },
+      {
+        path: "/about-us",
+        Component: AboutUs,
       },
     ],
   },
@@ -80,15 +85,28 @@ const router = createBrowserRouter([
       },
       {
         path: "add-scholarship",
-        Component: AddScholarShip,
+        element: (
+          <AdminRoute>
+            <AddScholarShip></AddScholarShip>
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-scholarship",
-        Component: ManageScholarships,
+        element: (
+          <AdminRoute>
+            <ManageScholarships></ManageScholarships>
+          </AdminRoute>
+        ),
       },
       {
         path: "edit-scholarship/:id",
-        Component: EditScholarship,
+        element: (
+          <AdminRoute>
+            <EditScholarship></EditScholarship>
+          </AdminRoute>
+        ),
+        // Component: EditScholarship,
       },
       {
         path: "my-applications",
@@ -100,11 +118,21 @@ const router = createBrowserRouter([
       },
       {
         path: "all-applications",
-        Component: ManageApplications,
+        element: (
+          <AdminRoute>
+            <ManageApplications></ManageApplications>
+          </AdminRoute>
+        ),
+        // Component: ManageApplications,
       },
       {
         path: "users-managment",
-        Component: ManageUser,
+        element: (
+          <AdminRoute>
+            <ManageUser></ManageUser>
+          </AdminRoute>
+        ),
+        // Component: ManageUser,
       },
     ],
   },

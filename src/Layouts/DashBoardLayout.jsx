@@ -109,6 +109,20 @@ const DashBoardLayout = () => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Application Managment  */}
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Application Managment "
+                    to="/dashboard/all-applications 
+"
+                  >
+                    <RiChatSettingsFill size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Application Managment{" "}
+                    </span>
+                  </NavLink>
+                </li>
               </>
             )}
 
@@ -134,20 +148,6 @@ const DashBoardLayout = () => {
               >
                 <RiMessageLine size={20} />
                 <span className="is-drawer-close:hidden">My Reviews</span>
-              </NavLink>
-            </li>
-            {/* Application Managment  */}
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Application Managment "
-                to="/dashboard/all-applications 
-"
-              >
-                <RiChatSettingsFill size={20} />
-                <span className="is-drawer-close:hidden">
-                  Application Managment{" "}
-                </span>
               </NavLink>
             </li>
 
