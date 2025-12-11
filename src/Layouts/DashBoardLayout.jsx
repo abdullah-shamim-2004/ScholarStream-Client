@@ -6,8 +6,12 @@ import { MdEditDocument } from "react-icons/md";
 import { RiChatSettingsFill, RiMessageLine } from "react-icons/ri";
 import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../Hooks/useRole/useRole";
 
 const DashBoardLayout = () => {
+  const { role } = useRole();
+  // console.log(role);
+
   return (
     <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto bg-[#eaeced]">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -61,44 +65,52 @@ const DashBoardLayout = () => {
                 <span className="is-drawer-close:hidden">My Profile</span>
               </NavLink>
             </li>
-            {/* Add ScholarShip */}
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Add Scholarship"
-                to="/dashboard/add-scholarship
+            {role === "admin" && (
+              <>
+                {/* Add ScholarShip */}
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Add Scholarship"
+                    to="/dashboard/add-scholarship
 "
-              >
-                <TiDocumentAdd size={20} />
-                <span className="is-drawer-close:hidden">Add ScholarShip</span>
-              </NavLink>
-            </li>
-            {/* Manage ScholarShip */}
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Scholarship"
-                to="/dashboard/manage-scholarship
+                  >
+                    <TiDocumentAdd size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Add ScholarShip
+                    </span>
+                  </NavLink>
+                </li>
+                {/* Manage ScholarShip */}
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Scholarship"
+                    to="/dashboard/manage-scholarship
 "
-              >
-                <MdEditDocument size={20} />
-                <span className="is-drawer-close:hidden">
-                  Manage ScholarShip
-                </span>
-              </NavLink>
-            </li>
+                  >
+                    <MdEditDocument size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Manage ScholarShip
+                    </span>
+                  </NavLink>
+                </li>
 
-            {/* Users Managment  */}
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Users Managment "
-                to="/dashboard/users-managment"
-              >
-                <FaUser size={20} />
-                <span className="is-drawer-close:hidden">Users Managment </span>
-              </NavLink>
-            </li>
+                {/* Users Managment  */}
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Managment "
+                    to="/dashboard/users-managment"
+                  >
+                    <FaUser size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Users Managment{" "}
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* My applications */}
             <li>

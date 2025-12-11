@@ -4,20 +4,19 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
-
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { signInUser } = useAuth();
+  const { UserSignIn } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const handleLogIn = (data) => {
-    signInUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
+    UserSignIn(data.email, data.password)
+      .then(() => {
+        // console.log(res.user);
         navigate(location.state || "/");
       })
       .catch((errror) => {
