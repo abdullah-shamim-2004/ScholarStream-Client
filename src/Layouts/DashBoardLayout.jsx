@@ -3,7 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegFileAlt, FaSlidersH, FaUser } from "react-icons/fa";
 import { IoMdHome, IoMdSettings } from "react-icons/io";
 import { MdEditDocument } from "react-icons/md";
-import { RiMessageLine } from "react-icons/ri";
+import { RiChatSettingsFill, RiMessageLine } from "react-icons/ri";
 import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
 
@@ -123,6 +123,20 @@ const DashBoardLayout = () => {
               >
                 <RiMessageLine size={20} />
                 <span className="is-drawer-close:hidden">My Reviews</span>
+              </NavLink>
+            </li>
+            {/* Application Managment  */}
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Application Managment "
+                to="/dashboard/all-applications 
+"
+              >
+                <RiChatSettingsFill size={20} />
+                <span className="is-drawer-close:hidden">
+                  Application Managment{" "}
+                </span>
               </NavLink>
             </li>
 
