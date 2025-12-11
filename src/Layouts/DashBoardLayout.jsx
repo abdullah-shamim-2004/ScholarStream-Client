@@ -93,8 +93,7 @@ const DashBoardLayout = () => {
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Users Managment "
-                to="/dashboard/users-managment 
-"
+                to="/dashboard/users-managment"
               >
                 <FaUser size={20} />
                 <span className="is-drawer-close:hidden">Users Managment </span>
