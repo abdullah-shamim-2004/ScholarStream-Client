@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import { toast, ToastContainer } from "react-toastify";
 import { FaUserCircle } from "react-icons/fa";
+import { MdSchool } from "react-icons/md";
 
 const Navbar = () => {
   const { user, UserSignOut } = useAuth();
@@ -29,11 +30,6 @@ const Navbar = () => {
           Scholarships
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink to="/payment/:id" className="nav-link">
-          Payment
-        </NavLink>
-      </li> */}
 
       <li>
         <NavLink to="/about-us" className="nav-link">
@@ -77,7 +73,11 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center justify-center gap-1.5">
           {/* <FaUtensils className="text-2xl text-secondary" /> */}
-          <Link to="/" className="normal-case text-2xl font-bold">
+          <Link
+            to="/"
+            className="normal-case text-2xl font-bold flex justify-center items-center gap-1.5"
+          >
+            <MdSchool />
             Scholar<span className="text-primary">Stream</span>
           </Link>
         </div>

@@ -35,12 +35,12 @@ const ManageUser = () => {
       const res = await axiosSecure.patch(`/users/${user._id}`, userInfo);
 
       if (res.data?.modifiedCount > 0) {
-        await refetch();
         Swal.fire({
           title: "Confirmed!",
           text: `${user.displayName} is now an ${role}.`,
           icon: "success",
         });
+        await refetch();
       } else {
         Swal.fire({
           title: "No Changes!",

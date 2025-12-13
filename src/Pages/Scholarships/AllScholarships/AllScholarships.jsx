@@ -9,6 +9,12 @@ const AllScholarships = () => {
   const axiosInstance = useAxios();
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [country, setCountry] = useState("");
+  const [subject, setSubject] = useState("");
+  const [degree, setDegree] = useState("");
+  const [page, setPage] = useState(1);
+  const limit = 8;
+  // console.log(filter);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,25 +24,41 @@ const AllScholarships = () => {
     return () => clearTimeout(timer);
   }, [search]);
 
-  const {
-    data: scholarships = [],
-    isLoading,
-    isFetching,
-    error,
-  } = useQuery({
-    queryKey: ["AllScholarship", debouncedSearch],
+  const { data, isLoading, isFetching, error } = useQuery({
+    queryKey: [
+      "scholarships",
+      debouncedSearch,
+      country,
+      subject,
+      degree,
+      limit,
+      page,
+    ],
     queryFn: async () => {
-      const res = await axiosInstance.get(
-        `/scholarships?search=${debouncedSearch}`
-      );
+      const params = new URLSearchParams({
+        search: debouncedSearch,
+        country,
+        subject,
+        degree,
+        limit,
+        page,
+      });
+      const res = await axiosInstance.get(`/scholarships?${params.toString()}`);
       return res.data;
     },
-    enabled: true,
+    keepPreviousData: true,
   });
+  const scholarships = data?.scholarships || [];
+  const totalPages = data?.totalPages || 1;
 
   // input handler
   const handleSearch = (e) => {
     setSearch(e.target.value);
+  };
+  // input handler
+  const handleFiter = (e) => {
+    setSubject(e.target.value);
+    // refetch();
   };
 
   if (error) return <h2>Error</h2>;
@@ -63,41 +85,50 @@ const AllScholarships = () => {
         {/* Subject Filter */}
         <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
 
-        <select className="select select-bordered rounded-xl w-40 shadow-sm">
+        <select
+          onChange={handleFiter}
+          className="select select-bordered rounded-xl w-40 shadow-sm"
+        >
           <option disabled selected>
             Subject Category
           </option>
-          <option>Engineering</option>
-          <option>Business</option>
-          <option>Computer Science</option>
-          <option>Medical</option>
-          <option>Arts</option>
+          <option value="STEM">STEM</option>
+          <option value="General">General</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Arts">Arts</option>
+          <option value="Business">Business</option>
+          <option value="Leadership">Leadership</option>
+          <option value="Medical">Medical</option>
         </select>
 
         {/* Scholarship Category */}
         <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
 
-        <select className="select select-bordered rounded-xl w-40 shadow-sm">
+        <select
+          onClick={(e) => setDegree(e.target.value)}
+          className="select select-bordered rounded-xl w-40 shadow-sm"
+        >
           <option disabled selected>
-            Scholarship Type
+            Degree
           </option>
-          <option>Fully Funded</option>
-          <option>Partially Funded</option>
-          <option>Tuition Waiver</option>
-          <option>Fellowship</option>
+          <option value="Undergraduate">Undergraduate</option>
+          <option value="Graduate">Graduate</option>
         </select>
         {/* Location Filter */}
         <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
 
-        <select className="select select-bordered rounded-xl w-40 shadow-sm">
+        <select
+          onChange={(e) => setCountry(e.target.value)}
+          className="select select-bordered rounded-xl w-40 shadow-sm"
+        >
           <option disabled selected>
             Country
           </option>
-          <option>USA</option>
-          <option>UK</option>
-          <option>Canada</option>
-          <option>Germany</option>
-          <option>Australia</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Canada">Canada</option>
+          <option value="Japan">Japan</option>
         </select>
 
         {/* Search Button */}
@@ -129,6 +160,28 @@ const AllScholarships = () => {
           ))}
         </div>
       )}
+      <div className="flex gap-2 mt-6 justify-center">
+        <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+          Prev
+        </button>
+
+        {[...Array(totalPages).keys()].map((num) => (
+          <button
+            key={num}
+            onClick={() => setPage(num + 1)}
+            className={page === num + 1 ? "bg-blue-500 text-white" : ""}
+          >
+            {num + 1}
+          </button>
+        ))}
+
+        <button
+          disabled={page === totalPages}
+          onClick={() => setPage(page + 1)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

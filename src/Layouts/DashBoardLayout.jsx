@@ -2,7 +2,7 @@ import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaRegFileAlt, FaSlidersH, FaUser } from "react-icons/fa";
 import { IoMdHome, IoMdSettings } from "react-icons/io";
-import { MdEditDocument } from "react-icons/md";
+import { MdEditDocument, MdSchool } from "react-icons/md";
 import { RiChatSettingsFill, RiMessageLine } from "react-icons/ri";
 import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
@@ -42,15 +42,28 @@ const DashBoardLayout = () => {
           {/* Sidebar content here */}
           <ul className="menu w-full grow gap-5">
             {/* List item */}
+            {/* Website Home */}
             <li>
               <Link
                 to="/"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Homepage"
+                data-tip="Home page"
+              >
+                {/* Home icon */}
+                <MdSchool size={20} />
+                <span className="is-drawer-close:hidden">Home</span>
+              </Link>
+            </li>
+            {/* Dashboard Home */}
+            <li>
+              <Link
+                to="/dashboard"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="DashBoard Home"
               >
                 {/* Home icon */}
                 <IoMdHome size={20} />
-                <span className="is-drawer-close:hidden">Homepage</span>
+                <span className="is-drawer-close:hidden">DashBoard Home</span>
               </Link>
             </li>
             {/* My Profile*/}

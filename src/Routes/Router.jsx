@@ -21,6 +21,7 @@ import ManageApplications from "../Pages/DashBoard/ManageApplications/ManageAppl
 import ManageUser from "../Pages/DashBoard/ManageUser/ManageUser";
 import AboutUs from "../Components/AboutUs/AboutUs";
 import AdminRoute from "./AdminRoute";
+import DashBoardHome from "../Pages/DashBoard/DashBoardHome/DashBoardHome";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,11 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        Component: DashBoardHome,
+      },
+
       {
         path: "my-profile",
         Component: MyProfile,
