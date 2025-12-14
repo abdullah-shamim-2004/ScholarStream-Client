@@ -8,18 +8,24 @@ const ScholarShipDetails = () => {
   const { id } = useParams();
 
   const axiosInstance = useAxios();
-  //   data fetching
-  const {
-    data: scholarship = [],
-    isLoading,
-    // isSuccess
-  } = useQuery({
+  //   scholarship fetching
+  const { data: scholarship = [], isLoading: scholarshipLoading } = useQuery({
     queryKey: ["singleScholarship", id],
     queryFn: async () => {
       const res = await axiosInstance.get(`/scholarships/${id}`);
       return res.data;
     },
   });
+  // review fatching
+  const { data: reviews = [], isLoading: reviewLoading } = useQuery({
+    queryKey: ["reviews", id],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/reviews/${id}`);
+      return res.data;
+    },
+  });
+  // console.log(reviews);
+
   const {
     _id,
     scholarshipName,
@@ -37,13 +43,15 @@ const ScholarShipDetails = () => {
     deadline,
     postDate,
   } = scholarship;
-  if (isLoading) {
+
+  // Loader
+  if (scholarshipLoading || reviewLoading) {
     return <Loader></Loader>;
   }
   //   console.log(scholarship);
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 ">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl shadow-xl p-8 border">
         {/* LEFT: Image */}
         <div>
@@ -100,12 +108,6 @@ const ScholarShipDetails = () => {
       <div className="bg-white rounded-2xl shadow-xl mt-8 p-8 border">
         <h2 className="text-2xl font-bold mb-4">Scholarship Details</h2>
 
-        {/* {description ? (
-          <p className="text-gray-700 leading-relaxed">{description}</p>
-        ) : (
-          <p className="text-gray-500">No description available.</p>
-        )} */}
-
         <h3 className="text-xl font-semibold mt-6">Financial Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
           <div className="p-4 bg-gray-100 rounded-xl">
@@ -133,6 +135,24 @@ const ScholarShipDetails = () => {
         >
           Apply Now
         </Link>
+      </div>
+      <div className="mt-2.5 w-fit mx-auto flex">
+        {reviews.map((review) => (
+          <div key={review._id} className="border p-3 rounded">
+            <div className="flex items-center gap-2">
+              <img src={review.userImage} className="w-10 h-10 rounded-full" />
+              <div>
+                <p className="font-semibold">{review.userName}</p>
+                <p className="text-sm text-gray-500">
+                  {new Date(review.reviewDate).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+
+            <p>⭐ {review.rating}/5</p>
+            <p>{review.comment}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
