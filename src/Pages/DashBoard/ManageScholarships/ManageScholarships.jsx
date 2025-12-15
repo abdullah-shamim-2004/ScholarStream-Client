@@ -1,6 +1,6 @@
 import React from "react";
 // import useAuth from "../../../Hooks/useAuth/useAuth";
-import useAxios from "../../../Hooks/useAxios/useAxios";
+// import useAxios from "../../../Hooks/useAxios/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../Components/Loader/Loader";
 import { FaEdit } from "react-icons/fa";
@@ -10,8 +10,6 @@ import useSecure from "../../../Hooks/useSecure/useSecure";
 import Swal from "sweetalert2";
 
 const ManageScholarships = () => {
-  //   const { user } = useAuth();
-  const axiosInstance = useAxios();
   const axiosSecure = useSecure();
   const {
     data: scholarships = [],
@@ -22,10 +20,11 @@ const ManageScholarships = () => {
     queryKey: ["Scholarship"],
     queryFn: async () => {
       //   const email = user.email;
-      const res = await axiosInstance.get(`/scholarships`);
-      return res.data;
+      const res = await axiosSecure.get(`/scholarships`);
+      return res.data.result;
     },
   });
+  // console.log(scholarships);
 
   // Delete scholarship
   const handleDelete = (id) => {
@@ -40,7 +39,7 @@ const ManageScholarships = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/parcels/${id}`).then((res) => {
+        axiosSecure.delete(`/scholarships/${id}`).then((res) => {
           console.log(res.data);
           if (res.data.deletedCount) {
             // Refetch the data

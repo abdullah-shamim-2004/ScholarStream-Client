@@ -43,7 +43,9 @@ const AllScholarships = () => {
         limit,
         page,
       });
-      const res = await axiosInstance.get(`/scholarships?${params.toString()}`);
+      const res = await axiosInstance.get(
+        `/all-scholarships?${params.toString()}`
+      );
       return res.data;
     },
     keepPreviousData: true,

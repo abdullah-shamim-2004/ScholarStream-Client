@@ -6,9 +6,11 @@ import Loader from "../../Components/Loader/Loader";
 import useAuth from "../../Hooks/useAuth/useAuth";
 
 const Payment = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axiosSecure = useSecure();
   const { id: scholarshipId } = useParams();
+  // console.log(user);
+
   const { data: scholarship, isLoading } = useQuery({
     queryKey: ["scholarship", scholarshipId],
     queryFn: async () => {
@@ -34,6 +36,7 @@ const Payment = () => {
       scholarshipName: scholarship.scholarshipName,
       universityName: scholarship.universityName,
       studentEmail: user.email,
+      userName: user.displayName,
     };
     // console.log(paymentInfo);
 
@@ -42,7 +45,7 @@ const Payment = () => {
     window.location.href = res.data.url;
   };
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loader></Loader>;
   }
 

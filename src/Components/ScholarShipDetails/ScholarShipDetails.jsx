@@ -136,9 +136,9 @@ const ScholarShipDetails = () => {
           Apply Now
         </Link>
       </div>
-      <div className="mt-2.5 w-fit mx-auto flex">
+      <div className="mt-2.5 w-fit mx-auto flex gap-3">
         {reviews.map((review) => (
-          <div key={review._id} className="border p-3 rounded">
+          <div key={review._id} className="border flex-1 p-3 rounded">
             <div className="flex items-center gap-2">
               <img src={review.userImage} className="w-10 h-10 rounded-full" />
               <div>

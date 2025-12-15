@@ -7,6 +7,7 @@ import { RiChatSettingsFill, RiMessageLine } from "react-icons/ri";
 import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole/useRole";
+import { GoGraph } from "react-icons/go";
 
 const DashBoardLayout = () => {
   const { role } = useRole();
@@ -49,7 +50,6 @@ const DashBoardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Home page"
               >
-                {/* Home icon */}
                 <MdSchool size={20} />
                 <span className="is-drawer-close:hidden">Home</span>
               </Link>
@@ -61,7 +61,6 @@ const DashBoardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="DashBoard Home"
               >
-                {/* Home icon */}
                 <IoMdHome size={20} />
                 <span className="is-drawer-close:hidden">DashBoard Home</span>
               </Link>
@@ -80,6 +79,7 @@ const DashBoardLayout = () => {
             </li>
             {role === "admin" && (
               <>
+                <h2>Admin Panel</h2>
                 {/* Add ScholarShip */}
                 <li>
                   <NavLink
@@ -122,6 +122,19 @@ const DashBoardLayout = () => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Data analys */}
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Data Analytics"
+                    to="/dashboard/data-analytics"
+                  >
+                    <GoGraph size={20} />
+                    <span className="is-drawer-close:hidden">
+                    Data Analytics
+                    </span>
+                  </NavLink>
+                </li>
                 {/* Application Managment  */}
                 <li>
                   <NavLink
@@ -138,7 +151,7 @@ const DashBoardLayout = () => {
                 </li>
               </>
             )}
-
+            <h2>Student panel</h2>
             {/* My applications */}
             <li>
               <NavLink

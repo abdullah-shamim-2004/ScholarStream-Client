@@ -22,6 +22,7 @@ import ManageUser from "../Pages/DashBoard/ManageUser/ManageUser";
 import AboutUs from "../Components/AboutUs/AboutUs";
 import AdminRoute from "./AdminRoute";
 import DashBoardHome from "../Pages/DashBoard/DashBoardHome/DashBoardHome";
+import DataAnalytics from "../Pages/DashBoard/DataAnalytics/DataAnalytics";
 
 const router = createBrowserRouter([
   {
@@ -139,6 +140,14 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         // Component: ManageUser,
+      },
+      {
+        path: "data-analytics",
+        element: (
+          <AdminRoute>
+            <DataAnalytics></DataAnalytics>
+          </AdminRoute>
+        ),
       },
     ],
   },

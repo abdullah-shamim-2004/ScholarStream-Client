@@ -17,18 +17,18 @@ const TopScholarships = () => {
   } = useQuery({
     queryKey: ["AllScholarship"],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/scholarships?limit=${6}&sort=top`);
+      const res = await axiosInstance.get(
+        `/all-scholarships?limit=${6}&sort=top`
+      );
       return res.data;
     },
     enabled: true,
   });
   const scholarships = data?.scholarships || [];
-  
 
   if (isLoading) {
     return <Loader></Loader>;
   }
-  
 
   return (
     <div className=" bg-[#EEF3F7] py-10 px-4 md:px-8 mt-10">
