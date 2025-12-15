@@ -1,16 +1,89 @@
-# React + Vite
+# 🎓 Scholarship Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application that helps students discover scholarships, apply securely, and manage applications, while allowing admins and moderators to control and verify scholarship data efficiently.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Live Website
+👉 https://your-live-site-url.com
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎯 Project Purpose
 
-## Expanding the ESLint configuration
+The Scholarship Management System is designed to:
+- Help students easily find and apply for global scholarships
+- Provide secure online payments for applications
+- Allow admins and moderators to manage scholarships and applications
+- Maintain transparency and efficiency in scholarship processing
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Key Features
+
+### 👩‍🎓 Student Features
+- Browse and search scholarships
+- View detailed scholarship information
+- Apply for scholarships
+- Secure payment system using Stripe
+- View application status (Paid / Unpaid / Pending)
+- Retry payment if payment fails
+
+### 🧑‍💼 Admin Features
+- Add, update, and delete scholarships
+- Manage users and assign roles (Admin / Moderator / Student)
+- View all applications
+- Approve or reject applications
+
+### 🛡️ Moderator Features
+- Review scholarship listings
+- Approve or reject scholarships submitted by users
+- Ensure data accuracy and quality
+
+### 💳 Payment System
+- Stripe Checkout integration
+- Payment success & payment failure handling
+- Automatic application saving on payment failure
+- Secure payment records
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React
+- React Router
+- TanStack Query (React Query)
+- Axios
+- Tailwind CSS
+- DaisyUI
+- React Hook Form
+- React Icons
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- Stripe API
+
+### Authentication & Security
+- Firebase Authentication
+- JSON Web Token (JWT)
+- Role-based access control (Admin / Moderator / Student)
+
+---
+
+## 📦 NPM Packages Used
+
+### Frontend
+
+react
+react-router-dom
+@tanstack/react-query
+axios
+react-hook-form
+react-icons
+firebase
+tailwindcss
+daisyui
