@@ -21,8 +21,10 @@ import ManageApplications from "../Pages/DashBoard/ManageApplications/ManageAppl
 import ManageUser from "../Pages/DashBoard/ManageUser/ManageUser";
 import AboutUs from "../Components/AboutUs/AboutUs";
 import AdminRoute from "./AdminRoute";
+import ModerateRoute from "./ModeratorRoute";
 import DashBoardHome from "../Pages/DashBoard/DashBoardHome/DashBoardHome";
 import DataAnalytics from "../Pages/DashBoard/DataAnalytics/DataAnalytics";
+import AllReviews from "../Pages/DashBoard/AllReviews/AllReviews";
 
 const router = createBrowserRouter([
   {
@@ -125,12 +127,21 @@ const router = createBrowserRouter([
       },
       {
         path: "all-applications",
-        element: (
-          <AdminRoute>
-            <ManageApplications></ManageApplications>
-          </AdminRoute>
-        ),
-        // Component: ManageApplications,
+        // element: (
+        //   <ModerateRoute>
+        //     <ManageApplications></ManageApplications>
+        //   </ModerateRoute>
+        // ),
+        Component: ManageApplications,
+      },
+      {
+        path: "all-reviews",
+        // element: (
+        //   <ModerateRoute>
+        //     <ManageApplications></ManageApplications>
+        //   </ModerateRoute>
+        // ),
+        Component: AllReviews,
       },
       {
         path: "users-managment",

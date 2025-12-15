@@ -3,7 +3,11 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegFileAlt, FaSlidersH, FaUser } from "react-icons/fa";
 import { IoMdHome, IoMdSettings } from "react-icons/io";
 import { MdEditDocument, MdSchool } from "react-icons/md";
-import { RiChatSettingsFill, RiMessageLine } from "react-icons/ri";
+import {
+  RiChatSettingsFill,
+  RiFileSettingsLine,
+  RiMessageLine,
+} from "react-icons/ri";
 import { TiDocumentAdd } from "react-icons/ti";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole/useRole";
@@ -131,10 +135,15 @@ const DashBoardLayout = () => {
                   >
                     <GoGraph size={20} />
                     <span className="is-drawer-close:hidden">
-                    Data Analytics
+                      Data Analytics
                     </span>
                   </NavLink>
                 </li>
+              </>
+            )}
+            {(role === "admin" || role === "moderator") && (
+              <>
+                <h2>Moderator panel</h2>
                 {/* Application Managment  */}
                 <li>
                   <NavLink
@@ -147,6 +156,18 @@ const DashBoardLayout = () => {
                     <span className="is-drawer-close:hidden">
                       Application Managment{" "}
                     </span>
+                  </NavLink>
+                </li>
+                {/* All Reviews */}
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="All Reviews"
+                    to="/dashboard/all-reviews 
+"
+                  >
+                    <RiFileSettingsLine size={20} />
+                    <span className="is-drawer-close:hidden">All Reviews</span>
                   </NavLink>
                 </li>
               </>
