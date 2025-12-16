@@ -9,13 +9,13 @@ import {
   RiMessageLine,
 } from "react-icons/ri";
 import { TiDocumentAdd } from "react-icons/ti";
-import { Link, NavLink, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole/useRole";
 import { GoGraph } from "react-icons/go";
 
 const DashBoardLayout = () => {
   const { role } = useRole();
-  // console.log(role);
+
 
   return (
     <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto bg-[#eaeced]">
@@ -31,7 +31,10 @@ const DashBoardLayout = () => {
             {/* Sidebar toggle icon */}
             <FaSlidersH />
           </label>
-          <div className="px-4">ScholarStream DashBoard</div>
+          <div className="flex items-center gap-2 font-semibold">
+            <MdSchool size={22} />
+            ScholarStream Dashboard
+          </div>
         </nav>
         {/* Page content here */}
         <Outlet></Outlet>
@@ -46,28 +49,27 @@ const DashBoardLayout = () => {
         <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow gap-5">
-            {/* List item */}
             {/* Website Home */}
             <li>
-              <Link
+              <NavLink
                 to="/"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Home page"
               >
                 <MdSchool size={20} />
                 <span className="is-drawer-close:hidden">Home</span>
-              </Link>
+              </NavLink>
             </li>
             {/* Dashboard Home */}
             <li>
-              <Link
+              <NavLink
                 to="/dashboard"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="DashBoard Home"
               >
                 <IoMdHome size={20} />
                 <span className="is-drawer-close:hidden">DashBoard Home</span>
-              </Link>
+              </NavLink>
             </li>
             {/* My Profile*/}
             <li>
@@ -83,7 +85,9 @@ const DashBoardLayout = () => {
             </li>
             {role === "admin" && (
               <>
-                <h2>Admin Panel</h2>
+                <h2 className=" text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  Admin Panel
+                </h2>
                 {/* Add ScholarShip */}
                 <li>
                   <NavLink
@@ -143,7 +147,9 @@ const DashBoardLayout = () => {
             )}
             {(role === "admin" || role === "moderator") && (
               <>
-                <h2>Moderator panel</h2>
+                <h2 className=" text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  Moderator Panel
+                </h2>
                 {/* Application Managment  */}
                 <li>
                   <NavLink
@@ -172,7 +178,9 @@ const DashBoardLayout = () => {
                 </li>
               </>
             )}
-            <h2>Student panel</h2>
+            <h2 className=" text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Student panel
+            </h2>
             {/* My applications */}
             <li>
               <NavLink

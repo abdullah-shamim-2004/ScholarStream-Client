@@ -6,10 +6,16 @@ import Swal from "sweetalert2";
 import useSecure from "../../../Hooks/useSecure/useSecure";
 import { RiAdminLine } from "react-icons/ri";
 import { MdOutlinePersonRemove } from "react-icons/md";
+import Loader from "../../../Components/Loader/Loader";
+
 
 const ManageUser = () => {
   const axiosSecure = useSecure();
-  const { refetch, data: users = [] } = useQuery({
+  const {
+    refetch,
+    isLoading,
+    data: users = [],
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users`);
@@ -34,7 +40,7 @@ const ManageUser = () => {
     try {
       const res = await axiosSecure.patch(`/users/${user._id}`, userInfo);
 
-      if (res.data?.modifiedCount > 0) {
+      if (res.data?.result?.modifiedCount > 0) {
         Swal.fire({
           title: "Confirmed!",
           text: `${user.displayName} is now an ${role}.`,
@@ -67,14 +73,13 @@ const ManageUser = () => {
   const handleMakemoderator = (user) => {
     UserRole(user, "moderator");
   };
-  // Remove from admin
-  const handleRemoveAdmin = (user) => {
+  // Remove from admin or moderator
+  const handleSetStudent = (user) => {
     UserRole(user, "student");
   };
-  // Remove from moderator
-  const handleRemovemoderator = (user) => {
-    UserRole(user, "student");
-  };
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div>
@@ -93,14 +98,17 @@ const ManageUser = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={index}>
+              <tr key={user._id}>
                 <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src={user.photoURL}
+                          src={
+                            user.photoURL ||
+                            "https://i.ibb.co/4pDNDk1/avatar.png"
+                          }
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
@@ -118,7 +126,7 @@ const ManageUser = () => {
                   {user.role === "moderator" ? (
                     <button
                       onClick={() => {
-                        handleRemovemoderator(user);
+                        handleSetStudent(user);
                       }}
                       className="btn btn-outline btn-error"
                     >
@@ -138,7 +146,7 @@ const ManageUser = () => {
                   {user.role === "admin" ? (
                     <button
                       onClick={() => {
-                        handleRemoveAdmin(user);
+                        handleSetStudent(user);
                       }}
                       className="btn btn-outline btn-error"
                     >

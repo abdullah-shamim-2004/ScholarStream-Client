@@ -4,6 +4,7 @@ import ScholarShipCard from "../../../Components/ScholarShipCard/ScholarShipCard
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios/useAxios";
 import Loader from "../../../Components/Loader/Loader";
+import SkeletonCard from "../../../Components/SkeletonCard/SkeletonCard";
 
 const AllScholarships = () => {
   const axiosInstance = useAxios();
@@ -63,15 +64,15 @@ const AllScholarships = () => {
     // refetch();
   };
 
-  if (error) return <h2>Error</h2>;
+  if (error) return <h2>{error}</h2>;
 
   return (
     <div className="px-4 py-10">
       {/* Top Filter Bar */}
-      <div className="bg-white p-4 my-5 rounded-2xl shadow-md border border-gray-200 flex flex-wrap items-center gap-4">
+      <div className="bg-white p-4 my-5 rounded-2xl shadow-md border border-gray-200 flex flex-wrap justify-around items-center gap-4">
         {/* Left Filter Label */}
-        <button className="flex items-center gap-2 bg-neutral text-white px-5 py-3 rounded-xl font-semibold shadow-sm">
-          <span className="text-lg">⚙️</span> Filter Scholarships
+        <button className="flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-semibold shadow-sm">
+          <span className="text-lg text-black">⚙️</span> Filter Scholarships
         </button>
 
         {/* Search bar */}
@@ -171,7 +172,7 @@ const AllScholarships = () => {
           <button
             key={num}
             onClick={() => setPage(num + 1)}
-            className={page === num + 1 ? "bg-blue-500 text-white" : ""}
+            className={page === num + 1 ? "bg-blue-500 px-1.5 text-white" : ""}
           >
             {num + 1}
           </button>

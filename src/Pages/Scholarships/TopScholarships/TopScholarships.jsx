@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-// import useSecure from "../../../Hooks/useSecure/useSecure";
 import useAxios from "../../../Hooks/useAxios/useAxios";
 import Loader from "../../../Components/Loader/Loader";
 import ScholarShipCard from "../../../Components/ScholarShipCard/ScholarShipCard";
 import { Link } from "react-router";
 
 const TopScholarships = () => {
-  //   const axiosSecure = useSecure();
   const axiosInstance = useAxios();
   const {
     data,
@@ -25,9 +23,8 @@ const TopScholarships = () => {
     enabled: true,
   });
   const scholarships = data?.scholarships || [];
-
   if (isLoading) {
-    return <Loader></Loader>;
+    return <Loader />;
   }
 
   return (

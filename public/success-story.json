@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Ayesha Rahman",
+    "university": "University of Toronto",
+    "country": "Canada",
+    "image": "https://i.ibb.co/2nZzL3N/student1.png",
+    "message": "This platform helped me secure a fully funded scholarship. The process was simple, clear, and reliable.",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Abdullah Khan",
+    "university": "University of Melbourne",
+    "country": "Australia",
+    "image": "https://i.ibb.co/ZJY4t7N/student2.png",
+    "message": "Finding scholarships used to be confusing, but this website made everything organized and easy to apply.",
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "name": "Nusrat Jahan",
+    "university": "Heidelberg University",
+    "country": "Germany",
+    "image": "https://i.ibb.co/6yX3RZj/student3.png",
+    "message": "I successfully applied for my master's scholarship through this platform. Highly recommended for students.",
+    "rating": 4
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "question": "What is this scholarship platform about?",
+    "answer": "This platform helps students find, apply, and manage scholarships from different universities around the world in one place."
+  },
+  {
+    "id": 2,
+    "question": "Who can apply for scholarships?",
+    "answer": "Any registered student can apply for available scholarships based on eligibility criteria such as degree level, subject category, and country."
+  },
+  {
+    "id": 3,
+    "question": "Is it free to use this platform?",
+    "answer": "Yes, browsing scholarships is completely free. Some scholarships may require a small application or service fee."
+  },
+  {
+    "id": 4,
+    "question": "How do I apply for a scholarship?",
+    "answer": "You need to create an account, log in, view scholarship details, and click the Apply button to complete the application process."
+  },
+  {
+    "id": 5,
+    "question": "Why do I need to pay an application fee?",
+    "answer": "The application fee covers processing, verification, and administrative services required to manage scholarship applications."
+  },
+  {
+    "id": 6,
+    "question": "What happens if my payment fails?",
+    "answer": "If payment fails, your application will be saved with an unpaid status, and you can retry payment later from your dashboard."
+  },
+  {
+    "id": 7,
+    "question": "Can I edit my scholarship application after submission?",
+    "answer": "No, once an application is submitted, it cannot be edited. Please review all details carefully before submitting."
+  },
+  {
+    "id": 8,
+    "question": "How will I know if my application is accepted?",
+    "answer": "You will receive updates through your dashboard, and the application status will be updated accordingly."
+  }
+]

@@ -25,11 +25,13 @@ import ModerateRoute from "./ModeratorRoute";
 import DashBoardHome from "../Pages/DashBoard/DashBoardHome/DashBoardHome";
 import DataAnalytics from "../Pages/DashBoard/DataAnalytics/DataAnalytics";
 import AllReviews from "../Pages/DashBoard/AllReviews/AllReviews";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -127,21 +129,21 @@ const router = createBrowserRouter([
       },
       {
         path: "all-applications",
-        // element: (
-        //   <ModerateRoute>
-        //     <ManageApplications></ManageApplications>
-        //   </ModerateRoute>
-        // ),
-        Component: ManageApplications,
+        element: (
+          <ModerateRoute>
+            <ManageApplications></ManageApplications>
+          </ModerateRoute>
+        ),
+        // Component: ManageApplications,
       },
       {
         path: "all-reviews",
-        // element: (
-        //   <ModerateRoute>
-        //     <ManageApplications></ManageApplications>
-        //   </ModerateRoute>
-        // ),
-        Component: AllReviews,
+        element: (
+          <ModerateRoute>
+            <AllReviews></AllReviews>
+          </ModerateRoute>
+        ),
+        // Component: AllReviews,
       },
       {
         path: "users-managment",

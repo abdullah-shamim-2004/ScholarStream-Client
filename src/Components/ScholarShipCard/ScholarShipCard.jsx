@@ -1,10 +1,15 @@
 import React from "react";
 import { FaGlobe, FaUniversity } from "react-icons/fa";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const ScholarShipCard = ({ item }) => {
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border rounded-xl">
+    <motion.div
+     
+      transition={{ type: "spring", stiffness: 300 }}
+      className="card bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border rounded-xl"
+    >
       <figure>
         <img
           src={item.image}
@@ -56,7 +61,7 @@ const ScholarShipCard = ({ item }) => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
