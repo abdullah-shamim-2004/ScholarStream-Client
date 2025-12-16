@@ -1,12 +1,11 @@
 import React from "react";
 import { FaGlobe, FaUniversity } from "react-icons/fa";
 import { Link } from "react-router";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 const ScholarShipCard = ({ item }) => {
   return (
-    <motion.div
-     
+    <div
       transition={{ type: "spring", stiffness: 300 }}
       className="card bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border rounded-xl"
     >
@@ -61,7 +60,7 @@ const ScholarShipCard = ({ item }) => {
           </Link>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

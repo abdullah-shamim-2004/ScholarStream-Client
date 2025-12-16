@@ -5,13 +5,15 @@ A full-stack web application that helps students discover scholarships, apply se
 ---
 
 ## 🔗 Live Website
-👉 https://your-live-site-url.com
+
+👉 https://scholar-stream-client.netlify.app/
 
 ---
 
 ## 🎯 Project Purpose
 
 The Scholarship Management System is designed to:
+
 - Help students easily find and apply for global scholarships
 - Provide secure online payments for applications
 - Allow admins and moderators to manage scholarships and applications
@@ -22,6 +24,7 @@ The Scholarship Management System is designed to:
 ## ✨ Key Features
 
 ### 👩‍🎓 Student Features
+
 - Browse and search scholarships
 - View detailed scholarship information
 - Apply for scholarships
@@ -30,17 +33,20 @@ The Scholarship Management System is designed to:
 - Retry payment if payment fails
 
 ### 🧑‍💼 Admin Features
+
 - Add, update, and delete scholarships
 - Manage users and assign roles (Admin / Moderator / Student)
 - View all applications
 - Approve or reject applications
 
 ### 🛡️ Moderator Features
+
 - Review scholarship listings
 - Approve or reject scholarships submitted by users
 - Ensure data accuracy and quality
 
 ### 💳 Payment System
+
 - Stripe Checkout integration
 - Payment success & payment failure handling
 - Automatic application saving on payment failure
@@ -51,6 +57,7 @@ The Scholarship Management System is designed to:
 ## 🛠️ Technologies Used
 
 ### Frontend
+
 - React
 - React Router
 - TanStack Query (React Query)
@@ -61,6 +68,7 @@ The Scholarship Management System is designed to:
 - React Icons
 
 ### Backend
+
 - Node.js
 - Express.js
 - MongoDB
@@ -68,6 +76,7 @@ The Scholarship Management System is designed to:
 - Stripe API
 
 ### Authentication & Security
+
 - Firebase Authentication
 - JSON Web Token (JWT)
 - Role-based access control (Admin / Moderator / Student)

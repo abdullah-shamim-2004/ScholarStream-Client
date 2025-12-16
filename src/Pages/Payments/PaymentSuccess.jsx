@@ -7,7 +7,7 @@ const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const axiosSecure = useSecure();
-  //   console.log(sessionId);
+    // console.log(sessionId);
 
   const [paymentData, setPaymentData] = useState(null);
 
