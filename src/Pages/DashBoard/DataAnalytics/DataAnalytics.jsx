@@ -18,7 +18,6 @@ const DataAnalytics = () => {
   const totalScholarships = data?.totalScholarships || 0;
   const totalRevenue = data?.totalRevenue || 0;
   const universityData = data?.Data || 0;
-  console.log(totalUsers, totalScholarships, totalRevenue, universityData);
   if (isLoading) {
     return <Loader></Loader>;
   }

@@ -19,16 +19,13 @@ const ManageScholarships = () => {
   } = useQuery({
     queryKey: ["Scholarship"],
     queryFn: async () => {
-      //   const email = user.email;
       const res = await axiosSecure.get(`/scholarships`);
       return res.data.result;
     },
   });
-  // console.log(scholarships);
 
   // Delete scholarship
   const handleDelete = (id) => {
-    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -40,7 +37,6 @@ const ManageScholarships = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/scholarships/${id}`).then((res) => {
-          console.log(res.data);
           if (res.data.deletedCount) {
             // Refetch the data
             refetch();

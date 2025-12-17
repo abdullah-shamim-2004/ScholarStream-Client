@@ -18,7 +18,7 @@ const AllReviews = () => {
       return res.data.reviews || [];
     },
   });
-  //   console.log(reviews);
+
 
   if (isLoading) return <Loader />;
   // Delete the review

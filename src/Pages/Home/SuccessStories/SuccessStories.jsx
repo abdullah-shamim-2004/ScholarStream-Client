@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { motion as Motion } from "framer-motion";
 
 const SuccessStories = () => {
   const [storys, setStory] = useState([]);
-//   console.log(storys);
 
   useEffect(() => {
     axios("../success-story.json").then((res) => setStory(res.data));
@@ -16,9 +16,13 @@ const SuccessStories = () => {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {storys.map((story) => (
+          {storys.map((story, index) => (
             <div
               key={story.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
               className="bg-white p-6 rounded-2xl shadow-md text-center hover:shadow-2xl"
             >
               <img

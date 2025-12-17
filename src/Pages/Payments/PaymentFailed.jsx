@@ -16,7 +16,7 @@ const PaymentFailed = () => {
     universityName: "",
     amount: 0,
   });
-  // console.log(scholarshipData);
+ 
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {

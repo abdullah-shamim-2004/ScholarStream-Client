@@ -4,7 +4,8 @@ import ScholarShipCard from "../../../Components/ScholarShipCard/ScholarShipCard
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios/useAxios";
 import Loader from "../../../Components/Loader/Loader";
-import SkeletonCard from "../../../Components/SkeletonCard/SkeletonCard";
+import { motion as Motion } from "framer-motion";
+
 
 const AllScholarships = () => {
   const axiosInstance = useAxios();
@@ -15,7 +16,6 @@ const AllScholarships = () => {
   const [degree, setDegree] = useState("");
   const [page, setPage] = useState(1);
   const limit = 8;
-  // console.log(filter);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -159,7 +159,15 @@ const AllScholarships = () => {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
           {scholarships.map((item, index) => (
-            <ScholarShipCard key={index} item={item}></ScholarShipCard>
+            <Motion.div
+              key={item._id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <ScholarShipCard key={index} item={item}></ScholarShipCard>
+            </Motion.div>
           ))}
         </div>
       )}

@@ -4,6 +4,7 @@ import useAxios from "../../../Hooks/useAxios/useAxios";
 import Loader from "../../../Components/Loader/Loader";
 import ScholarShipCard from "../../../Components/ScholarShipCard/ScholarShipCard";
 import { Link } from "react-router";
+import { motion as Motion } from "framer-motion";
 
 const TopScholarships = () => {
   const axiosInstance = useAxios();
@@ -55,8 +56,16 @@ const TopScholarships = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-10">
-        {scholarships.map((item) => (
-          <ScholarShipCard item={item} key={item._id}></ScholarShipCard>
+        {scholarships.map((item, index) => (
+          <Motion.div
+            key={item._id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <ScholarShipCard item={item}></ScholarShipCard>
+          </Motion.div>
         ))}
       </div>
     </div>

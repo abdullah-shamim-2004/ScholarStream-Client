@@ -16,7 +16,6 @@ const Login = () => {
   const handleLogIn = (data) => {
     UserSignIn(data.email, data.password)
       .then(() => {
-        // console.log(res.user);
         navigate(location.state || "/");
       })
       .catch((errror) => {

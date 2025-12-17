@@ -42,8 +42,6 @@ const AddScholarShip = () => {
         email: user?.email,
       };
 
-      console.log("New Scholarship Data Submitted:", submissionData);
-
       await axiosSecure.post("/scholarships", submissionData).then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

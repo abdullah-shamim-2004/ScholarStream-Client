@@ -10,7 +10,7 @@ const Payment = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useSecure();
   const { id: scholarshipId } = useParams();
-  // console.log(user);
+
 
   const { data: scholarship, isLoading } = useQuery({
     queryKey: ["scholarship", scholarshipId],
@@ -22,7 +22,7 @@ const Payment = () => {
   if (isLoading || loading) {
     return <Loader></Loader>;
   }
-  //   console.log(scholarship);
+ 
   const handlePayment = async () => {
     // Store data for payment failure page
     localStorage.setItem("scholarshipId", scholarship._id);
@@ -42,7 +42,7 @@ const Payment = () => {
       studentEmail: user.email,
       userName: user.displayName,
     };
-    // console.log(paymentInfo);
+
 
     const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
 

@@ -7,7 +7,7 @@ const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const axiosSecure = useSecure();
-    // console.log(sessionId);
+   
 
   const [paymentData, setPaymentData] = useState(null);
 
@@ -17,12 +17,12 @@ const PaymentSuccess = () => {
     axiosSecure
       .get(`/payment-verify?session_id=${sessionId}`)
       .then((res) => {
-        console.log(res.data);
-        setPaymentData(res.data);
+       
+        setPaymentData(res.data?.insertApplication);
       })
       .catch((err) => console.log(err.response.data));
   }, [sessionId, axiosSecure]);
-  console.log(paymentData);
+ 
   if (!paymentData) {
     return <Loader />;
   }

@@ -24,7 +24,7 @@ const ScholarShipDetails = () => {
       return res.data;
     },
   });
-  // console.log(reviews);
+ 
 
   const {
     _id,
@@ -48,7 +48,7 @@ const ScholarShipDetails = () => {
   if (scholarshipLoading || reviewLoading) {
     return <Loader></Loader>;
   }
-  //   console.log(scholarship);
+ 
 
   return (
     <div className="container mx-auto p-6 ">

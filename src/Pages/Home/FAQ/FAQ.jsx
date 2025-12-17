@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const FAQ = () => {
   const [FAQ, setFAQ] = useState([]);
-  //   console.log(FAQ);
+
 
   useEffect(() => {
     axios("../faq.json").then((res) => setFAQ(res.data));

@@ -20,7 +20,7 @@ const UniversityPieChart = ({ universityData }) => {
     name: item.university,
     value: item.count,
   }));
-  //   console.log(pieChartData);
+ 
   return (
     <div
       className="p-6 bg-white rounded-lg shadow-md w-full"
