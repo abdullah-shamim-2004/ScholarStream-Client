@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { FaUserShield } from "react-icons/fa";
 import { FiShieldOff } from "react-icons/fi";
 import Swal from "sweetalert2";
@@ -8,17 +8,18 @@ import { RiAdminLine } from "react-icons/ri";
 import { MdOutlinePersonRemove } from "react-icons/md";
 import Loader from "../../../Components/Loader/Loader";
 
-
 const ManageUser = () => {
   const axiosSecure = useSecure();
+  const [role, setRole] = useState("");
+
   const {
     refetch,
     isLoading,
     data: users = [],
   } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users", role],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users`);
+      const res = await axiosSecure.get(`/users?role=${role}`);
       return res.data;
     },
   });
@@ -84,6 +85,26 @@ const ManageUser = () => {
   return (
     <div>
       <h2 className="text-4xl">Manage Users {users?.length}</h2>
+      <div className="bg-gray-300 mx-2 p-2 my-3 w-fit rounded-2xl shadow-md border border-gray-200 flex flex-wrap justify-items-end items-center gap-4">
+        <button className="flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-semibold shadow-sm">
+          <span className="text-lg text-black">⚙️</span> Filter User
+        </button>
+
+        {/* User Role filter */}
+        <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
+
+        <select
+          onChange={(e) => setRole(e.target.value)}
+          className="select select-bordered rounded-xl w-40 shadow-sm"
+        >
+          <option disabled selected>
+            User Role
+          </option>
+          <option value="admin">Admin</option>
+          <option value="moderator">Moderator</option>
+          <option value="student">Student</option>
+        </select>
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

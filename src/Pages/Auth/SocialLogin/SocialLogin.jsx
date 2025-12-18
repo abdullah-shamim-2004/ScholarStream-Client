@@ -9,8 +9,6 @@ const SocialLogin = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || "/";
-
   const handleSignInWithGoogle = () => {
     googleSignIn()
       .then((result) => {
@@ -25,7 +23,7 @@ const SocialLogin = () => {
         return axiosInstance.post("/users", userInfo);
       })
       .then(() => {
-        navigate(from, { replace: true });
+        navigate(location.state || "/");
       })
       .catch((error) => {
         console.error("Google Login Error:", error);
