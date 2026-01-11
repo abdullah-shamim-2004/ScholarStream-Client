@@ -3,9 +3,27 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #0EA5E9;
-  --color-secondary: #212121;
+  --color-primary: #0ea5e9; /* Sky 500 */
+  --color-secondary: #212121; /* Dark Grey */
+  --color-accent: #f59e0b; /* Amber 500 (বিপরীতধর্মী কালার) */
+  --color-neutral: #1f2937; /* Slate 800 */
+  --base-100: #ffffff; /* মূল ব্যাকগ্রাউন্ড */
+  --base-200: #f3f4f6; /* সেকেন্ডারি ব্যাকগ্রাউন্ড/কার্ড */
+  --base-content: #1f2937; /* প্রধান টেক্সট কালার */
 }
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #0ea5e9; /* প্রাইমারি অপরিবর্তিত রাখা হয়েছে */
+  --color-secondary: teal;
+  --color-accent: #fbbf24; /* হালকা উজ্জ্বল Amber */
+  --color-neutral: #111827; /* গাঢ় Slate */
+  --base-100: #0f172a; /* ডার্ক নেভি ব্লু ব্যাকগ্রাউন্ড */
+  --base-200: #1e293b; /* ডার্ক কার্ড ব্যাকগ্রাউন্ড */
+  --base-content: #f8fafc; /* সাদাটে টেক্সট কালার */
+}
+@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 * {
   font-family: "Poppins", sans-serif;

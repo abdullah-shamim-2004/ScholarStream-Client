@@ -17,7 +17,7 @@ const TopScholarships = () => {
     queryKey: ["AllScholarship"],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        `/all-scholarships?limit=${6}&sort=top`
+        `/all-scholarships?limit=${8}&sort=top`
       );
       return res.data;
     },
@@ -29,17 +29,17 @@ const TopScholarships = () => {
   }
 
   return (
-    <div className=" bg-[#EEF3F7] py-10 px-4 md:px-8 mt-10">
+    <div className=" bg-base-200 py-10 px-4 md:px-8 mt-10">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
         <div className="mb-2">
-          <h6 className="uppercase tracking-wider text-sm text-gray-500 mb-2">
+          <h6 className="uppercase tracking-wider text-sm text-base-content/70 mb-2">
             {" "}
             — Top Scholarships
           </h6>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 ">
+          <h2 className="text-3xl md:text-4xl font-bold text-base-content ">
             Featured Scholarships
           </h2>
-          <p className="text-s text-gray-600 max-w-xl mt-2 ">
+          <p className="text-s text-base-content/60 max-w-xl mt-2 ">
             Discover the best scholarships selected to help you achieve your
             academic goals with proper guidance, benefits, and financial
             support.
@@ -55,7 +55,7 @@ const TopScholarships = () => {
           </Link>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-10">
         {scholarships.map((item, index) => (
           <Motion.div
             key={item._id}

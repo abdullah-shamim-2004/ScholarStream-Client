@@ -164,9 +164,9 @@ const MyApplications = () => {
                   </button>
 
                   {/* EDIT BUTTON*/}
-                  {application.ApplicationStatus === "pending" && (
+                  {/* {application.ApplicationStatus === "pending" && (
                     <button className="btn btn-sm btn-warning">Edit</button>
-                  )}
+                  )} */}
 
                   {/* PAY BUTTON */}
                   {application.ApplicationStatus === "pending" &&

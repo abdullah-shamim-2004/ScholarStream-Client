@@ -3,6 +3,14 @@ import React from "react";
 import { Link, useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios/useAxios";
 import Loader from "../Loader/Loader";
+import {
+  FaAward,
+  FaCalendarAlt,
+  FaGlobe,
+  FaMoneyBillWave,
+  FaUniversity,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const ScholarShipDetails = () => {
   const { id } = useParams();
@@ -24,7 +32,6 @@ const ScholarShipDetails = () => {
       return res.data;
     },
   });
- 
 
   const {
     _id,
@@ -38,7 +45,7 @@ const ScholarShipDetails = () => {
     scholarshipCategory,
     degree,
     tuitionFees,
-    applicationFees,
+    // applicationFees,
     serviceCharge,
     deadline,
     postDate,
@@ -48,111 +55,198 @@ const ScholarShipDetails = () => {
   if (scholarshipLoading || reviewLoading) {
     return <Loader></Loader>;
   }
- 
 
   return (
-    <div className="container mx-auto p-6 ">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl shadow-xl p-8 border">
-        {/* LEFT: Image */}
-        <div>
-          <img
-            src={image}
-            className="w-full h-[350px] object-cover rounded-xl shadow-md"
-            alt="Scholarship Banner"
-          />
-        </div>
-
-        {/* RIGHT: Basic Info */}
-        <div>
-          <h1 className="text-3xl font-bold mb-3 text-gray-800">
-            {scholarshipName}
-          </h1>
-          <p className="text-lg font-semibold text-neutral">{universityName}</p>
-          <p className="mt-1 text-gray-600">
-            {city}, {country}
-          </p>
-
-          <div className="mt-4 grid grid-cols-2 gap-4">
-            <div className="p-4 bg-gray-100 rounded-xl">
-              <p className="font-bold">World Rank</p>
-              <p>{worldRank}</p>
-            </div>
-
-            <div className="p-4 bg-gray-100 rounded-xl">
-              <p className="font-bold">Degree</p>
-              <p>{degree}</p>
-            </div>
-
-            <div className="p-4 bg-gray-100 rounded-xl">
-              <p className="font-bold">Category</p>
-              <p>{scholarshipCategory}</p>
-            </div>
-
-            <div className="p-4 bg-gray-100 rounded-xl">
-              <p className="font-bold">Subject</p>
-              <p>{subjectCategory}</p>
-            </div>
-          </div>
-
-          <div className="mt-6 ">
-            <p className="font-semibold">Deadline:</p>
-            <p className="text-red-600 font-bold">{deadline}</p>
-
-            <p className="font-semibold mt-3">Posted On:</p>
-            <p>{postDate}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Details Section */}
-      <div className="bg-white rounded-2xl shadow-xl mt-8 p-8 border">
-        <h2 className="text-2xl font-bold mb-4">Scholarship Details</h2>
-
-        <h3 className="text-xl font-semibold mt-6">Financial Information</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-          <div className="p-4 bg-gray-100 rounded-xl">
-            <p className="font-bold">Tuition Fees</p>
-            <p>${tuitionFees}</p>
-          </div>
-
-          <div className="p-4 bg-gray-100 rounded-xl">
-            <p className="font-bold">Application Fees</p>
-            <p>${applicationFees}</p>
-          </div>
-
-          <div className="p-4 bg-gray-100 rounded-xl">
-            <p className="font-bold">Service Charge</p>
-            <p>${serviceCharge}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Button */}
-      <div className="text-center mt-8">
-        <Link
-          to={`/payment/${_id}`}
-          className="btn btn-primary px-10 text-white"
+    <div className="min-h-screen bg-base-200/30 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto space-y-10">
+        {/* --- HERO SECTION --- */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative bg-base-100 rounded-[2.5rem] shadow-sm overflow-hidden border border-base-200"
         >
-          Apply Now
-        </Link>
-      </div>
-      <div className="mt-2.5 w-fit mx-auto flex gap-3">
-        {reviews.map((review) => (
-          <div key={review._id} className="border flex-1 p-3 rounded">
-            <div className="flex items-center gap-2">
-              <img src={review.userImage} className="w-10 h-10 rounded-full" />
-              <div>
-                <p className="font-semibold">{review.userName}</p>
-                <p className="text-sm text-gray-500">
-                  {new Date(review.reviewDate).toLocaleDateString()}
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Image Side */}
+            <div className="relative h-[400px] lg:h-auto overflow-hidden">
+              <img
+                src={image}
+                className="w-full h-full object-cover"
+                alt="University"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent " />
+              <div className="absolute bottom-6 left-6 lg:hidden">
+                <span className="badge badge-primary p-4 font-bold">
+                  World Rank: #{worldRank}
+                </span>
               </div>
             </div>
 
-            <p>⭐ {review.rating}/5</p>
-            <p>{review.comment}</p>
+            {/* Content Side */}
+            <div className="p-8 lg:p-12 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
+                  {scholarshipCategory}
+                </span>
+                <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-widest">
+                  {degree}
+                </span>
+              </div>
+
+              <h1 className="text-4xl lg:text-5xl font-black text-base-content leading-tight mb-6">
+                {scholarshipName}
+              </h1>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-10 h-10 rounded-full bg-base-200 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <FaUniversity className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-base-content/50 leading-none">
+                      Institution
+                    </p>
+                    <p className="text-lg font-bold text-base-content">
+                      {universityName}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 group">
+                  <div className="w-10 h-10 rounded-full bg-base-200 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+                    <FaGlobe className="text-secondary" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-base-content/50 leading-none">
+                      Location
+                    </p>
+                    <p className="text-lg font-bold text-base-content">
+                      {city}, {country}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-6 bg-base-200/50 rounded-3xl border border-base-300">
+                <div>
+                  <p className="text-xs font-bold text-error uppercase mb-1 flex items-center gap-1">
+                    <FaCalendarAlt /> Deadline
+                  </p>
+                  <p className="text-xl font-black text-base-content">
+                    {deadline}
+                  </p>
+                </div>
+                <Link
+                  to={`/payment/${_id}`}
+                  className="btn btn-primary btn-lg rounded-2xl px-10 shadow-lg shadow-primary/30 text-white border-none hover:scale-105 transition-transform"
+                >
+                  Apply Now
+                </Link>
+              </div>
+            </div>
           </div>
-        ))}
+        </motion.div>
+
+        {/* --- INFO TILES --- */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            {
+              label: "Subject",
+              value: subjectCategory,
+              icon: <FaAward />,
+              color: "text-blue-500",
+            },
+            {
+              label: "Posted",
+              value: postDate,
+              icon: <FaCalendarAlt />,
+              color: "text-green-500",
+            },
+            {
+              label: "Tuition",
+              value: `$${tuitionFees}`,
+              icon: <FaMoneyBillWave />,
+              color: "text-amber-500",
+            },
+            {
+              label: "Service",
+              value: `$${serviceCharge}`,
+              icon: <FaMoneyBillWave />,
+              color: "text-purple-500",
+            },
+          ].map((item, i) => (
+            <motion.div
+              whileHover={{ y: -5 }}
+              key={i}
+              className="bg-base-100 p-6 rounded-[2rem] shadow-xl border border-base-200 text-center"
+            >
+              <div
+                className={`mx-auto w-12 h-12 rounded-2xl bg-base-200 flex items-center justify-center text-xl mb-3 ${item.color}`}
+              >
+                {item.icon}
+              </div>
+              <p className="text-xs font-bold text-base-content/40 uppercase tracking-tighter">
+                {item.label}
+              </p>
+              <p className="text-lg font-black text-base-content truncate">
+                {item.value}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* --- REVIEWS SECTION --- */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between px-4">
+            <h2 className="text-3xl font-black text-base-content tracking-tight">
+              Student Feedback
+            </h2>
+            <div className="h-1 flex-1 mx-6 bg-gradient-to-r from-primary/20 to-transparent rounded-full hidden md:block" />
+            <button className="btn btn-ghost btn-sm">View All</button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {reviews.map((review, index) => (
+              <motion.div
+                key={review._id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="bg-base-100 p-8 rounded-[2.5rem] shadow-xl border border-base-200 relative"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="avatar">
+                    <div className="w-14 rounded-2xl ring ring-primary ring-offset-base-100 ring-offset-2">
+                      <img src={review.userImage} alt={review.userName} />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-black text-base-content">
+                      {review.userName}
+                    </h4>
+                    <p className="text-xs text-base-content/50 uppercase font-bold tracking-widest">
+                      {new Date(review.reviewDate).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-base-content/70 italic leading-relaxed mb-6">
+                  "{review.comment}"
+                </p>
+                <div className="flex gap-1 text-primary">
+                  {[...Array(5)].map((_, i) => (
+                    <span
+                      key={i}
+                      className={
+                        i < review.rating ? "text-primary" : "text-base-300"
+                      }
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
