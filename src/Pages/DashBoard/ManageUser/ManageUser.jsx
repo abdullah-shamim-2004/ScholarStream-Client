@@ -85,25 +85,26 @@ const ManageUser = () => {
   return (
     <div>
       <h2 className="text-4xl">Manage Users {users?.length}</h2>
-      <div className="bg-gray-300 mx-2 p-2 my-3 w-fit rounded-2xl shadow-md border border-gray-200 flex flex-wrap justify-items-end items-center gap-4">
-        <button className="flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-semibold shadow-sm">
-          <span className="text-lg text-black">⚙️</span> Filter User
-        </button>
+      <div className="flex justify-end items-center w-full px-4 my-6">
+        <div className="flex items-center gap-3 bg-base-100 p-2 rounded-2xl shadow-sm border border-base-200">
+          <label className="text-sm font-semibold text-gray-500 ml-2">
+            Sort By:
+          </label>
 
-        {/* User Role filter */}
-        <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
-
-        <select
-          onChange={(e) => setRole(e.target.value)}
-          className="select select-bordered rounded-xl w-40 shadow-sm"
-        >
-          <option disabled selected>
-            User Role
-          </option>
-          <option value="admin">Admin</option>
-          <option value="moderator">Moderator</option>
-          <option value="student">Student</option>
-        </select>
+          {/* Improved Select Dropdown */}
+          <div className="relative">
+            <select
+              onChange={(e) => setRole(e.target.value)}
+              className="select select-bordered select-sm h-10 w-44 rounded-xl border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer font-medium"
+              defaultValue="User Role"
+            >
+              <option disabled >User Role</option>
+              <option value="admin">Admin</option>
+              <option value="moderator">Moderator</option>
+              <option value="student">Student</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div className="overflow-x-auto">
         <table className="table">

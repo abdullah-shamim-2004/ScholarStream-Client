@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const ScholarShipCard = ({ item }) => {
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border rounded-xl  h-full">
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-xl  h-full">
       <figure>
         <img
           src={item.image}

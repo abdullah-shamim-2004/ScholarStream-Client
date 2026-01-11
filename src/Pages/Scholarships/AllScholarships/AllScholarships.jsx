@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios/useAxios";
 import Loader from "../../../Components/Loader/Loader";
 import { motion as Motion } from "framer-motion";
-
+import { GrNext, GrPrevious } from "react-icons/gr";
 
 const AllScholarships = () => {
   const axiosInstance = useAxios();
@@ -157,7 +157,7 @@ const AllScholarships = () => {
           </h2>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
           {scholarships.map((item, index) => (
             <Motion.div
               key={item._id}
@@ -172,9 +172,11 @@ const AllScholarships = () => {
         </div>
       )}
       <div className="flex gap-2 mt-6 justify-center">
-        <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-          Prev
-        </button>
+        {page > 1 && (
+          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            <GrPrevious />
+          </button>
+        )}
 
         {[...Array(totalPages).keys()].map((num) => (
           <button
@@ -185,13 +187,14 @@ const AllScholarships = () => {
             {num + 1}
           </button>
         ))}
-
-        <button
-          disabled={page === totalPages}
-          onClick={() => setPage(page + 1)}
-        >
-          Next
-        </button>
+        {page < totalPages && (
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+          >
+            <GrNext />
+          </button>
+        )}
       </div>
     </div>
   );

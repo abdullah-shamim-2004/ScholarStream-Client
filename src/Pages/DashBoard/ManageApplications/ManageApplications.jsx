@@ -239,7 +239,7 @@ const ManageApplications = () => {
         <dialog open className="modal">
           <div className="modal-box">
             <h3 className="text-xl font-bold mb-3">
-              Write Feedback for {selectedApp.userName || "X"}
+              Write Feedback for {selectedApp.userName || "user"}
             </h3>
 
             <textarea

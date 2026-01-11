@@ -16,7 +16,6 @@ import { GoGraph } from "react-icons/go";
 const DashBoardLayout = () => {
   const { role } = useRole();
 
-
   return (
     <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto bg-[#eaeced]">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -57,18 +56,21 @@ const DashBoardLayout = () => {
                 data-tip="Home page"
               >
                 <MdSchool size={20} />
-                <span className="is-drawer-close:hidden">Home</span>
+                <span className="is-drawer-close:hidden">
+                  Scholar<span className="text-primary">Stream</span>
+                </span>
               </NavLink>
             </li>
             {/* Dashboard Home */}
             <li>
               <NavLink
                 to="/dashboard"
+                end
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="DashBoard Home"
               >
                 <IoMdHome size={20} />
-                <span className="is-drawer-close:hidden">DashBoard Home</span>
+                <span className="is-drawer-close:hidden"> Home</span>
               </NavLink>
             </li>
             {/* My Profile*/}
@@ -204,18 +206,6 @@ const DashBoardLayout = () => {
                 <RiMessageLine size={20} />
                 <span className="is-drawer-close:hidden">My Reviews</span>
               </NavLink>
-            </li>
-
-            {/* List item */}
-            <li>
-              <button
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Settings"
-              >
-                {/* Settings icon */}
-                <IoMdSettings size={20} />
-                <span className="is-drawer-close:hidden">Settings</span>
-              </button>
             </li>
           </ul>
         </div>
