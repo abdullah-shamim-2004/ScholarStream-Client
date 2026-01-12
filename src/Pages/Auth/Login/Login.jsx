@@ -26,8 +26,8 @@ const Login = () => {
   // Demo user Email and password
   const DEMO_USERS = {
     student: {
-      email: "demo@student.com",
-      password: "123456",
+      email: "demouser@gmail.com",
+      password: "1234Asdf",
     },
     moderator: {
       email: "moderator@gmail.com",

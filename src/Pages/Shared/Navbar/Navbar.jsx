@@ -158,7 +158,7 @@ const Navbar = () => {
                     Account
                   </p>
                   <p className="text-sm font-black text-base-content truncate">
-                    {user?.displayName || "User"}
+                    {user?.displayName || "Student"}
                   </p>
                 </div>
                 <li>
