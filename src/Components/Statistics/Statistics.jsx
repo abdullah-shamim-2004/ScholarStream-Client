@@ -62,7 +62,7 @@ const Statistics = () => {
             <FaChartLine /> Real-time Impact
           </Motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-base-content tracking-tighter mb-6">
-            Our Impact in <span className="text-primary italic">Numbers.</span>
+            Our Impact in <span className="text-primary ">Numbers.</span>
           </h2>
           <p className="text-base-content/50 text-lg font-medium">
             Bridging the gap between ambitious students and world-class
