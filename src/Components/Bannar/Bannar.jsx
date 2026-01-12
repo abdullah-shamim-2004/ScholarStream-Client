@@ -8,7 +8,7 @@ const Bannar = () => {
     <main className="relative min-h-[90vh] max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center overflow-hidden lg:overflow-visible">
       {/* Left Side: Content */}
       <div className="z-10 order-2 lg:order-1">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8 text-[#1A2B33]">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8 text-base-content">
           Find Your <br />
           <span className="text-primary">Dream Scholarship</span> <br />
           With Confidence
@@ -32,7 +32,7 @@ const Bannar = () => {
           {/* Secondary CTA */}
           {!user && (
             <Link
-              to="/login"
+              to="/auth/login"
               className="border border-gray-300 text-gray-800 px-10 py-4 rounded-full text-md font-medium hover:bg-gray-100 transition-all active:scale-95"
             >
               Login

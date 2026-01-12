@@ -1,6 +1,6 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
-import { FaRegFileAlt, FaSlidersH, FaUser } from "react-icons/fa";
+import { FaRegFileAlt, FaSlidersH, FaUser, FaUserCircle } from "react-icons/fa";
 import { IoMdHome, IoMdSettings } from "react-icons/io";
 import { MdEditDocument, MdSchool } from "react-icons/md";
 import {

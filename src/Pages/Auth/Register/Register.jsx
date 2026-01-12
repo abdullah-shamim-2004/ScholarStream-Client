@@ -79,7 +79,6 @@ const Register = () => {
 
           <form onSubmit={handleSubmit(handleRegistration)}>
             <fieldset className="fieldset">
-
               {/* Name */}
               <label className="label">Name</label>
               <input
@@ -88,15 +87,13 @@ const Register = () => {
                 className="input"
                 placeholder="Your name"
               />
-              {errors.name && (
-                <p className="text-red-500">Name is required</p>
-              )}
+              {errors.name && <p className="text-red-500">Name is required</p>}
 
               {/* Photo */}
               <label className="label">Image</label>
               <input
                 type="file"
-                {...register("photo", { required: true })}
+                {...register("photo", { required: false })}
                 className="file-input"
               />
               {errors.photo && (
@@ -151,7 +148,11 @@ const Register = () => {
 
           <p className="text-md font-semibold text-center my-1.5">
             Have an account?{" "}
-            <Link state={location?.state} className="text-primary" to="/auth/login">
+            <Link
+              state={location?.state}
+              className="text-primary"
+              to="/auth/login"
+            >
               Login
             </Link>
           </p>

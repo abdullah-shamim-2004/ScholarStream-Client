@@ -6,6 +6,7 @@ import useAxios from "../../../Hooks/useAxios/useAxios";
 import Loader from "../../../Components/Loader/Loader";
 import { motion as Motion } from "framer-motion";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import { FaArrowLeft, FaSearch } from "react-icons/fa";
 
 const AllScholarships = () => {
   const axiosInstance = useAxios();
@@ -174,11 +175,54 @@ const AllScholarships = () => {
       {isLoading || isFetching ? (
         <Loader></Loader>
       ) : scholarships.length === 0 ? (
-        <div className="flex flex-col justify-center items-center h-[60vh] text-center">
-          <h2 className="text-4xl font-bold text-gray-600 mb-3">
-            No ScholarShips Found
+        <Motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col justify-center items-center min-h-[60vh] text-center px-6"
+        >
+          {/* Animated Illustration Icon */}
+          <div className="relative mb-8">
+            <Motion.div
+              animate={{
+                rotate: [0, 10, -10, 10, 0],
+                y: [0, -5, 0],
+              }}
+              transition={{ repeat: Infinity, duration: 4 }}
+              className="w-32 h-32 md:w-44 md:h-44 bg-base-200 rounded-full flex items-center justify-center text-base-content/10"
+            >
+              <FaSearch className="text-6xl md:text-8xl" />
+            </Motion.div>
+            <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+          </div>
+
+          {/* Text Content */}
+          <h2 className="text-3xl md:text-5xl font-black text-base-content tracking-tighter mb-4">
+            No Scholarships Found
           </h2>
-        </div>
+          <p className="text-base-content/50 max-w-md mx-auto mb-10 font-medium leading-relaxed">
+            We couldn't find any results matching your current filters. Try
+            adjusting your search or explore other categories.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() => window.location.reload()}
+              className="btn btn-primary px-8 rounded-2xl text-white font-bold shadow-xl shadow-primary/30"
+            >
+              Refresh Search
+            </button>
+            <button
+              onClick={() => {
+                /* logic to clear filters */
+              }}
+              className="btn btn-ghost hover:bg-base-200 px-8 rounded-2xl font-bold flex items-center gap-2"
+            >
+              <FaArrowLeft className="text-xs" /> Clear All Filters
+            </button>
+          </div>
+        </Motion.div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
           {scholarships.map((item, index) => (
