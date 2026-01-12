@@ -25,7 +25,6 @@ const ManageUser = () => {
   });
   const UserRole = async (user, role) => {
     const userInfo = { role };
-
     const result = await Swal.fire({
       title: `Are you sure you want to set this user role to: ${role}?`,
       text: "You won't be able to revert this!",
@@ -39,6 +38,7 @@ const ManageUser = () => {
     if (!result.isConfirmed) return;
 
     try {
+      
       const res = await axiosSecure.patch(`/users/${user._id}`, userInfo);
 
       if (res.data?.result?.modifiedCount > 0) {

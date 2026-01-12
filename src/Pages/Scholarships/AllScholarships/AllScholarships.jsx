@@ -69,82 +69,105 @@ const AllScholarships = () => {
   return (
     <div className="px-4 py-10">
       {/* Top Filter Bar */}
-      <div className="bg-white p-4 my-5 rounded-2xl shadow-md border border-gray-200 flex flex-wrap justify-around items-center gap-4">
-        {/* Left Filter Label */}
-        <button className="flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-semibold shadow-sm">
-          <span className="text-lg text-black">⚙️</span> Filter Scholarships
-        </button>
+      <div className="bg-base-100/80 backdrop-blur-md p-4 md:p-6 my-8 rounded-[2rem] shadow-2xl shadow-base-300/20 border border-base-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row items-center justify-between gap-4">
+          {/* Left Filter Label - Fixed Width on Desktop */}
+          <div className="flex-none">
+            <button className="flex items-center justify-center gap-3 bg-primary text-white w-full lg:w-auto px-6 py-3.5 rounded-2xl font-bold shadow-lg shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all">
+              <span className="text-xl">⚙️</span>
+              <span className="whitespace-nowrap uppercase tracking-wider text-xs">
+                Filter
+              </span>
+            </button>
+          </div>
 
-        {/* Search bar */}
-        <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
+          {/* Vertical Divider - Hidden on Mobile */}
+          <div className="hidden lg:block h-10 w-[1px] bg-base-300 mx-2"></div>
 
-        <input
-          onChange={handleSearch}
-          type="text"
-          placeholder="Search scholarships..."
-          className="input input-bordered rounded-xl w-60 shadow-sm"
-        />
+          {/* Search bar - Grows to fill space */}
+          <div className="relative w-full lg:flex-1">
+            <input
+              onChange={handleSearch}
+              type="text"
+              placeholder="Search scholarships..."
+              className="input input-bordered bg-base-200/50 border-none focus:ring-2 ring-primary/20 rounded-2xl w-full h-12 shadow-inner pl-4"
+            />
+          </div>
 
-        {/* Subject Filter */}
-        <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
+          {/* Subject Filter */}
+          <div className="hidden lg:block h-10 w-[1px] bg-base-300 mx-2"></div>
+          <div className="w-full lg:w-44">
+            <select
+              onChange={handleFiter}
+              className="select select-bordered bg-base-200/50 border-none rounded-2xl w-full h-12 shadow-inner font-semibold text-sm"
+            >
+              <option disabled selected>
+                Subject Category
+              </option>
+              <option value="STEM">STEM</option>
+              <option value="General">General</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Arts">Arts</option>
+              <option value="Business">Business</option>
+              <option value="Medical">Medical</option>
+            </select>
+          </div>
 
-        <select
-          onChange={handleFiter}
-          className="select select-bordered rounded-xl w-40 shadow-sm"
-        >
-          <option disabled selected>
-            Subject Category
-          </option>
-          <option value="STEM">STEM</option>
-          <option value="General">General</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Arts">Arts</option>
-          <option value="Business">Business</option>
-          <option value="Leadership">Leadership</option>
-          <option value="Medical">Medical</option>
-        </select>
+          {/* Degree Filter */}
+          <div className="hidden lg:block h-10 w-[1px] bg-base-300 mx-2"></div>
+          <div className="w-full lg:w-44">
+            <select
+              onChange={(e) => setDegree(e.target.value)}
+              className="select select-bordered bg-base-200/50 border-none rounded-2xl w-full h-12 shadow-inner font-semibold text-sm"
+            >
+              <option disabled selected>
+                Degree
+              </option>
+              <option value="Undergraduate">Undergraduate</option>
+              <option value="Graduate">Graduate</option>
+            </select>
+          </div>
 
-        {/* Scholarship Category */}
-        <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
+          {/* Location Filter */}
+          <div className="hidden lg:block h-10 w-[1px] bg-base-300 mx-2"></div>
+          <div className="w-full lg:w-44">
+            <select
+              onChange={(e) => setCountry(e.target.value)}
+              className="select select-bordered bg-base-200/50 border-none rounded-2xl w-full h-12 shadow-inner font-semibold text-sm"
+            >
+              <option disabled selected>
+                Country
+              </option>
+              <option value="USA">USA</option>
+              <option value="UK">UK</option>
+              <option value="Canada">Canada</option>
+              <option value="Japan">Japan</option>
+            </select>
+          </div>
 
-        <select
-          onClick={(e) => setDegree(e.target.value)}
-          className="select select-bordered rounded-xl w-40 shadow-sm"
-        >
-          <option disabled selected>
-            Degree
-          </option>
-          <option value="Undergraduate">Undergraduate</option>
-          <option value="Graduate">Graduate</option>
-        </select>
-        {/* Location Filter */}
-        <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
-
-        <select
-          onChange={(e) => setCountry(e.target.value)}
-          className="select select-bordered rounded-xl w-40 shadow-sm"
-        >
-          <option disabled selected>
-            Country
-          </option>
-          <option value="USA">USA</option>
-          <option value="UK">UK</option>
-          <option value="Singapore">Singapore</option>
-          <option value="Canada">Canada</option>
-          <option value="Japan">Japan</option>
-        </select>
-
-        {/* Search Button */}
-        <div className="h-7 w-px bg-gray-300 hidden md:block"></div>
-
-        {/* <button className="flex items-center gap-2 bg-neutral text-white px-6 py-3 rounded-xl font-medium shadow-md">
-          <span>🔍</span> Search
-        </button> */}
-
-        {/* Clear Filter */}
-        {/* <button className="px-6 py-3 rounded-xl border border-gray-400 text-gray-700 font-medium hover:bg-gray-100 duration-200">
-          Clear Filter
-        </button> */}
+          {/* Optional: Reset Action Button */}
+          <div className="lg:ml-2">
+            <button
+              className="btn btn-ghost btn-circle hover:bg-error/10 hover:text-error transition-colors"
+              title="Clear Filters"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Grid */}

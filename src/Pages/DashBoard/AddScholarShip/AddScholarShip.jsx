@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import useSecure from "../../../Hooks/useSecure/useSecure";
 import Swal from "sweetalert2";
+import { MdSchool } from "react-icons/md";
 
 const AddScholarShip = () => {
   const { user } = useAuth();
@@ -59,310 +60,201 @@ const AddScholarShip = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 md:p-10 bg-gray-50 min-h-screen">
-      {/* Header */}
-      <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-center mb-2">
-          Add New Scholarship
+    <div className="container mx-auto p-4 md:p-10 bg-base-200/50 min-h-screen">
+      {/* Header Section */}
+      <header className="text-center mb-10">
+        <div className="inline-block p-3 bg-primary/10 rounded-2xl mb-4">
+          <MdSchool className="text-primary text-4xl" />
+        </div>
+        <h1 className="text-4xl font-black text-base-content tracking-tight mb-2">
+          Add New <span className="text-primary">Scholarship</span>
         </h1>
-        <p className="text-center text-gray-600 mb-8">
-          Fill the form below to publish a new scholarship opportunity.
+        <p className="text-base-content/60 font-medium">
+          Publish a new scholarship opportunity for global students.
         </p>
       </header>
 
       {/* Main Form Card */}
-      <div className="bg-white shadow-xl rounded-2xl p-8 border border-gray-100 max-w-4xl mx-auto">
-        {/* Form is wrapped with handleSubmit */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/*  Program Identification & Logistics */}
-          <section className="mb-8 p-6 border-b border-gray-200">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="bg-base-100 shadow-2xl rounded-[2.5rem] p-6 md:p-12 border border-base-300 max-w-5xl mx-auto relative overflow-hidden">
+        {/* Decorative blur element */}
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="relative z-10">
+          {/* --- Section 1: Identification --- */}
+          <section className="mb-10 group">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold">
+                1
+              </span>
+              <h2 className="text-xl font-bold text-base-content uppercase tracking-wider">
+                Program Details
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-2">
               {/* Scholarship Name */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Scholarship Name <span className="text-red-500">*</span>
+                  <span className="label-text font-bold text-base-content/70">
+                    Scholarship Name
                   </span>
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g., Global STEM Excellence Scholarship"
-                  className={`input input-bordered w-full shadow-sm ${
+                  placeholder="e.g., Global STEM Excellence"
+                  className={`input input-bordered bg-base-200/50 focus:border-primary rounded-xl h-12 ${
                     errors.scholarshipName ? "input-error" : ""
                   }`}
-                  // Register the field, including validation rules
                   {...register("scholarshipName", {
                     required: "Scholarship name is required",
                   })}
                 />
-                {errors.scholarshipName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.scholarshipName.message}
-                  </p>
-                )}
               </div>
 
               {/* University Name */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    University Name <span className="text-red-500">*</span>
+                  <span className="label-text font-bold text-base-content/70">
+                    University Name
                   </span>
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g., MIT, Oxford"
-                  className={`input input-bordered w-full shadow-sm ${
+                  placeholder="e.g., Harvard University"
+                  className={`input input-bordered bg-base-200/50 focus:border-primary rounded-xl h-12 ${
                     errors.universityName ? "input-error" : ""
                   }`}
                   {...register("universityName", {
                     required: "University name is required",
                   })}
                 />
-                {errors.universityName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.universityName.message}
-                  </p>
-                )}
               </div>
 
               {/* Image URL */}
               <div className="form-control md:col-span-2">
                 <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Image URL
+                  <span className="label-text font-bold text-base-content/70">
+                    Thumbnail URL
                   </span>
                 </label>
                 <input
                   type="url"
-                  placeholder="https://i.ibb.co.com/scholarship-banner.png"
-                  className="input input-bordered w-full shadow-sm"
+                  placeholder="https://image-link.com"
+                  className="input input-bordered bg-base-200/50 focus:border-primary rounded-xl h-12"
                   {...register("image")}
                 />
               </div>
             </div>
           </section>
 
-          {/*  Academic & Geographic Details */}
-          <section className="mb-8 p-6 border-b border-gray-200">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* --- Section 2: Academic & Geographic --- */}
+          <section className="mb-10">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-8 h-8 rounded-lg bg-secondary text-white flex items-center justify-center font-bold">
+                2
+              </span>
+              <h2 className="text-xl font-bold text-base-content uppercase tracking-wider">
+                Eligibility & Location
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2">
               {/* Country */}
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Country <span className="text-red-500">*</span>
-                  </span>
+                <label className="label text-xs font-bold text-base-content/50 uppercase">
+                  Country
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g., USA"
-                  className={`input input-bordered w-full shadow-sm ${
-                    errors.country ? "input-error" : ""
-                  }`}
-                  {...register("country", { required: "Country is required" })}
+                  className="input input-bordered bg-base-200/50 rounded-xl"
+                  {...register("country", { required: true })}
                 />
-                {errors.country && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.country.message}
-                  </p>
-                )}
-              </div>
-
-              {/* City */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    City
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g., Cambridge"
-                  className="input input-bordered w-full shadow-sm"
-                  {...register("city")}
-                />
-              </div>
-
-              {/* World Rank */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    World Rank
-                  </span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="e.g., 1"
-                  min="1"
-                  className={`input input-bordered w-full shadow-sm ${
-                    errors.worldRank ? "input-error" : ""
-                  }`}
-                  {...register("worldRank", {
-                    min: { value: 1, message: "Rank must be 1 or higher" },
-                  })}
-                />
-                {errors.worldRank && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.worldRank.message}
-                  </p>
-                )}
               </div>
 
               {/* Subject Category */}
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Subject Category <span className="text-red-500">*</span>
-                  </span>
+                <label className="label text-xs font-bold text-base-content/50 uppercase">
+                  Category
                 </label>
                 <select
-                  className="select select-bordered w-full shadow-sm"
+                  className="select select-bordered bg-base-200/50 rounded-xl"
                   {...register("subjectCategory", { required: true })}
                 >
                   <option>STEM</option>
                   <option>Arts & Humanities</option>
-                  <option>Social Sciences</option>
                   <option>Business & Law</option>
                 </select>
               </div>
 
-              {/* Degree */}
+              {/* Degree Level */}
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Degree Level <span className="text-red-500">*</span>
-                  </span>
+                <label className="label text-xs font-bold text-base-content/50 uppercase">
+                  Degree
                 </label>
                 <select
-                  className="select select-bordered w-full shadow-sm"
+                  className="select select-bordered bg-base-200/50 rounded-xl"
                   {...register("degree", { required: true })}
                 >
                   <option>Undergraduate</option>
-                  <option>Graduate (Master's)</option>
-                  <option>Post-Doctoral (PhD)</option>
-                  <option>High School</option>
-                </select>
-              </div>
-
-              {/* Scholarship Category */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Funding Type <span className="text-red-500">*</span>
-                  </span>
-                </label>
-                <select
-                  className="select select-bordered w-full shadow-sm"
-                  {...register("scholarshipCategory", { required: true })}
-                >
-                  <option>Full Funded</option>
-                  <option>Partially Funded</option>
-                  <option>Tuition Waiver</option>
-                  <option>Research Grant</option>
+                  <option>Master's</option>
+                  <option>PhD</option>
                 </select>
               </div>
             </div>
           </section>
 
-          {/*  Financials and Dates */}
-          <section className="mb-10 p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {/* Tuition Fees */}
+          {/* --- Section 3: Financials --- */}
+          <section className="mb-10 bg-base-200/30 p-6 rounded-[2rem] border border-base-300/50">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-8 h-8 rounded-lg bg-accent text-white flex items-center justify-center font-bold">
+                $
+              </span>
+              <h2 className="text-xl font-bold text-base-content uppercase tracking-wider">
+                Financial Details
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Tuition Fees ($)
-                  </span>
+                <label className="label text-xs font-black opacity-50 uppercase">
+                  Application Fee
                 </label>
                 <input
                   type="number"
-                  min="0"
-                  className="input input-bordered w-full shadow-sm"
-                  {...register("tuitionFees", { min: 0 })}
+                  className="input input-bordered bg-base-100 rounded-xl"
+                  {...register("applicationFees")}
                 />
               </div>
-
-              {/* Application Fees */}
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Application Fees ($)
-                  </span>
+                <label className="label text-xs font-black opacity-50 uppercase">
+                  Service Charge
                 </label>
                 <input
                   type="number"
-                  min="0"
-                  className="input input-bordered w-full shadow-sm"
-                  {...register("applicationFees", { min: 0 })}
+                  className="input input-bordered bg-base-100 rounded-xl"
+                  {...register("serviceCharge")}
                 />
               </div>
-
-              {/* Service Charge */}
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Service Charge ($)
-                  </span>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  className="input input-bordered w-full shadow-sm"
-                  {...register("serviceCharge", { min: 0 })}
-                />
-              </div>
-
-              {/* Post Date (Read-only) */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Post Date
-                  </span>
+                <label className="label text-xs font-black opacity-50 uppercase">
+                  Deadline
                 </label>
                 <input
                   type="date"
-                  className="input input-bordered w-full shadow-sm bg-gray-100"
-                  readOnly
-                  {...register("postDate")}
+                  className="input input-bordered bg-base-100 rounded-xl"
+                  {...register("deadline", { required: true })}
                 />
-              </div>
-
-              {/* Deadline */}
-              <div className="form-control md:col-span-4">
-                <label className="label">
-                  <span className="label-text font-semibold text-gray-700">
-                    Application Deadline <span className="text-red-500">*</span>
-                  </span>
-                </label>
-                <input
-                  type="date"
-                  className={`input input-bordered w-full shadow-sm ${
-                    errors.deadline ? "input-error" : ""
-                  }`}
-                  {...register("deadline", {
-                    required: "Deadline is required",
-                    // Simple future date validation (can be more robust)
-                    validate: (value) =>
-                      new Date(value) > new Date() ||
-                      "Deadline must be in the future",
-                  })}
-                />
-                {errors.deadline && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.deadline.message}
-                  </p>
-                )}
               </div>
             </div>
           </section>
 
           {/* Submit Button */}
-          <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+          <div className="mt-12 text-center">
             <button
               type="submit"
-              className="btn btn-md btn-primary text-white px-12 shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-300 font-bold"
+              className="btn btn-primary btn-wide rounded-2xl text-white font-black text-lg shadow-xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all"
             >
-              Create Scholarship
+              Publish Scholarship
             </button>
           </div>
         </form>

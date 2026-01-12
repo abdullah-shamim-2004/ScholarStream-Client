@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../Components/Loader/Loader";
 import { FaUsers, FaGraduationCap, FaDollarSign } from "react-icons/fa";
 import UniversityPieChart from "../../../Components/UniversityPieChart/UniversityPieChart";
+import { motion } from "framer-motion";
 
 const DataAnalytics = () => {
   const axiosSecure = useSecure();
@@ -24,45 +25,93 @@ const DataAnalytics = () => {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row gap-4 justify-center w-full mt-8 mx-auto">
-        {/* Total Users Card */}
-        <div className="flex items-center p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 w-full md:w-64">
-          <div className="p-3 bg-indigo-100 rounded-full text-indigo-600">
-            <FaUsers className="text-2xl" />
-          </div>
-          <div className="ml-4">
-            <h2 className="text-sm font-medium text-gray-500">Total Users</h2>
-            <span className="text-2xl font-bold text-gray-800">
-              {totalUsers}
-            </span>
-          </div>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-8 max-w-7xl mx-auto px-4">
+        {/* --- Total Users Card --- */}
+        <motion.div
+          whileHover={{ y: -5 }}
+          className="relative overflow-hidden flex items-center p-8 bg-base-100 border border-base-200 rounded-[2rem] shadow-xl shadow-base-300/20 group transition-all"
+        >
+          {/* Background Decorative Shape */}
+          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-indigo-500/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
 
-        {/* Total Scholarships Card */}
-        <div className="flex items-center p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 w-full md:w-64">
-          <div className="p-3 bg-green-100 rounded-full text-green-600">
-            <FaGraduationCap className="text-2xl" />
+          <div className="flex items-center gap-5 relative z-10">
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl shadow-lg shadow-indigo-200 text-white">
+              <FaUsers className="text-3xl" />
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-base-content/40 mb-1">
+                Community
+              </p>
+              <h2 className="text-sm font-bold text-base-content/60 leading-tight mb-1">
+                Total Users
+              </h2>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-black text-base-content tracking-tighter">
+                  {totalUsers?.toLocaleString()}
+                </span>
+                <span className="text-[10px] font-bold text-success">+12%</span>
+              </div>
+            </div>
           </div>
-          <div className="ml-4">
-            <h2 className="text-sm font-medium text-gray-500">Scholarships</h2>
-            <span className="text-2xl font-bold text-gray-800">
-              {totalScholarships}
-            </span>
-          </div>
-        </div>
+        </motion.div>
 
-        {/* Total Revenue Card */}
-        <div className="flex items-center p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 w-full md:w-64">
-          <div className="p-3 bg-blue-100 rounded-full text-blue-600">
-            <FaDollarSign className="text-2xl" />
+        {/* --- Total Scholarships Card --- */}
+        <motion.div
+          whileHover={{ y: -5 }}
+          className="relative overflow-hidden flex items-center p-8 bg-base-100 border border-base-200 rounded-[2rem] shadow-xl shadow-base-300/20 group transition-all"
+        >
+          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+
+          <div className="flex items-center gap-5 relative z-10">
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl shadow-lg shadow-emerald-200 text-white">
+              <FaGraduationCap className="text-3xl" />
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-base-content/40 mb-1">
+                Opportunities
+              </p>
+              <h2 className="text-sm font-bold text-base-content/60 leading-tight mb-1">
+                Scholarships
+              </h2>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-black text-base-content tracking-tighter">
+                  {totalScholarships}
+                </span>
+                <span className="text-[10px] font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-full">
+                  Active
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="ml-4">
-            <h2 className="text-sm font-medium text-gray-500">Total Revenue</h2>
-            <span className="text-2xl font-bold text-gray-800">
-              ${totalRevenue}
-            </span>
+        </motion.div>
+
+        {/* --- Total Revenue Card --- */}
+        <motion.div
+          whileHover={{ y: -5 }}
+          className="relative overflow-hidden flex items-center p-8 bg-base-100 border border-base-200 rounded-[2rem] shadow-xl shadow-base-300/20 group transition-all"
+        >
+          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-sky-500/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+
+          <div className="flex items-center gap-5 relative z-10">
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-sky-500 to-sky-600 rounded-2xl shadow-lg shadow-sky-200 text-white">
+              <FaDollarSign className="text-3xl" />
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-base-content/40 mb-1">
+                Financials
+              </p>
+              <h2 className="text-sm font-bold text-base-content/60 leading-tight mb-1">
+                Total Revenue
+              </h2>
+              <div className="flex items-baseline gap-1">
+                <span className="text-lg font-black text-sky-600">$</span>
+                <span className="text-3xl font-black text-base-content tracking-tighter">
+                  {totalRevenue?.toLocaleString()}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       <div className="mt-5 md:px-3">
         <UniversityPieChart universityData={universityData} />
