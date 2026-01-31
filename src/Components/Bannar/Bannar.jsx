@@ -13,6 +13,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
 import { bannerSlides } from "../../../public/bannerSlides";
+import Button from "../../Pages/Shared/Button/Button";
 
 const Bannar = () => {
   const { user } = useAuth();
@@ -51,13 +52,14 @@ const Bannar = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link
+            <Button
               to="/scholarships"
-              className="btn btn-primary btn-lg rounded-2xl px-10 text-white font-black shadow-xl shadow-primary/30 hover:scale-[1.05] transition-all group"
+              text="  Find Scholarships"
+              className='uppercase font-bold'
+              // className="btn btn-primary btn-lg rounded-2xl px-10 text-white font-black shadow-xl shadow-primary/30 hover:scale-[1.05] transition-all group"
             >
-              Find Scholarships{" "}
               <FaSearch className="ml-2 group-hover:rotate-12" />
-            </Link>
+            </Button>
 
             {!user && (
               <Link

@@ -41,7 +41,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-24 bg-base-100 overflow-hidden">
+    <section id="apply" className="py-24 bg-base-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <motion.div

@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth/useAuth";
 import { toast, ToastContainer } from "react-toastify";
 import { FaSignOutAlt, FaThLarge, FaUserCircle } from "react-icons/fa";
 import Logo from "../Logo/Logo";
+import Button from "../Button/Button";
 
 const Navbar = () => {
   const { user, UserSignOut } = useAuth();
@@ -195,19 +196,8 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            <div className="flex items-center gap-2">
-              <Link
-                to="/auth/login"
-                className="btn btn-ghost btn-sm px-4 rounded-full font-bold uppercase text-[11px] tracking-widest"
-              >
-                Login
-              </Link>
-              <Link
-                to="/auth/register"
-                className="btn btn-primary btn-sm px-5 rounded-full shadow-lg shadow-primary/20 font-bold uppercase text-[11px] tracking-widest"
-              >
-                Register
-              </Link>
+            <div className=" ">
+              <Button className="uppercase" to="/auth/login" text="Login" />
             </div>
           )}
         </div>

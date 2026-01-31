@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebookF, FaInstagram, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router";
+import { HashLink } from "react-router-hash-link";
 
 const Footer = () => {
   return (
@@ -43,32 +44,34 @@ const Footer = () => {
           <Link to="/" className="link link-hover">
             Home
           </Link>
-          <Link to="/all-scholarships" className="link link-hover">
+          <Link to="/scholarships" className="link link-hover">
             All Scholarships
           </Link>
-          <Link to="/" className="link link-hover">
-            Top Scholarships
-          </Link>
-          <Link to="/" className="link link-hover">
-            Study by Country
+          <Link to="/about-us" className="link link-hover">
+            About Us
           </Link>
         </div>
 
         {/* Resources */}
+
         <div>
           <h6 className="footer-title text-primary">Resources</h6>
-          <Link to="/" className="link link-hover">
+
+          <HashLink smooth to="/#apply" className="link link-hover">
             How to Apply
-          </Link>
-          <Link to="/" className="link link-hover">
+          </HashLink>
+
+          {/* <HashLink smooth to="/#guides" className="link link-hover">
             Scholarship Guides
-          </Link>
+          </HashLink> */}
+
           <Link to="/dashboard/my-applications" className="link link-hover">
             My Applications
           </Link>
-          <Link to="/faq" className="link link-hover">
+
+          <HashLink smooth to="/#faq" className="link link-hover">
             FAQ
-          </Link>
+          </HashLink>
         </div>
 
         {/* Legal */}
