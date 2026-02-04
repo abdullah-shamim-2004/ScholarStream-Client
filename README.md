@@ -4,9 +4,7 @@ A full-stack web application that helps students discover scholarships, apply se
 
 ---
 
-## 🔗 Live Website
-
-👉 https://scholar-stream-client.netlify.app/
+## 🔗 [Live Website](https://scholar-stream-client.netlify.app/)
 
 ---
 

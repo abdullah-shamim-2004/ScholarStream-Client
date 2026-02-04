@@ -38,8 +38,7 @@ const ManageUser = () => {
     if (!result.isConfirmed) return;
 
     try {
-      
-      const res = await axiosSecure.patch(`/users/${user._id}`, userInfo);
+      const res = await axiosSecure.patch(`/users/${user._id}/role`, userInfo);
 
       if (res.data?.result?.modifiedCount > 0) {
         Swal.fire({
@@ -98,7 +97,7 @@ const ManageUser = () => {
               className="select select-bordered select-sm h-10 w-44 rounded-xl border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer font-medium"
               defaultValue="User Role"
             >
-              <option disabled >User Role</option>
+              <option disabled>User Role</option>
               <option value="admin">Admin</option>
               <option value="moderator">Moderator</option>
               <option value="student">Student</option>

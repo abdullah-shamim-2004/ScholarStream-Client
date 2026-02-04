@@ -5,6 +5,7 @@ import useAuth from "../useAuth/useAuth";
 
 const axiosSecure = axios.create({
   baseURL: "https://scholar-stream-server-steel.vercel.app",
+  // baseURL: "http://localhost:3000/",
   headers: { "Content-Type": "application/json" },
 });
 
@@ -22,7 +23,7 @@ const useSecure = () => {
         }
         return config;
       },
-      (error) => Promise.reject(error)
+      (error) => Promise.reject(error),
     );
 
     // Response Interceptor
@@ -37,7 +38,7 @@ const useSecure = () => {
         }
 
         return Promise.reject(error);
-      }
+      },
     );
 
     // Cleanup

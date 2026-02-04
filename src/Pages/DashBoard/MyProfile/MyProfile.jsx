@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import Loader from "../../../Components/Loader/Loader";
 import { Award, Briefcase } from "lucide";
@@ -14,30 +14,58 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import useUser from "../../../Hooks/useUser/useUser";
+import useSecure from "../../../Hooks/useSecure/useSecure";
+import { toast, ToastContainer } from "react-toastify";
 
 const MyProfile = () => {
   const { user, setUser, loading, updateUser } = useAuth();
+  const axiosSecure = useSecure();
   const { role } = useRole();
+  const { userData, isLoading } = useUser();
+  // console.log(userData);
+  // const { country, university, department, phoneNumber, createdAt } = User;
+
   const [showModal, setShowModal] = useState(false);
   // console.log(user);
-
-  const handleUpdateProfile = (e) => {
+  // update the profile infomation
+  const handleUpdateProfile = async (e) => {
     e.preventDefault();
     const form = e.target;
     const displayName = form.name.value;
     const photoURL = form.photo.value;
-    updateUser({
-      displayName,
-      photoURL,
-    })
-      .then(() => {
-        setUser({ ...user, displayName, photoURL });
-        setShowModal(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setUser(user);
+    const country = form.country.value;
+    const phoneNumber = form.phone.value;
+    const university = form.university.value;
+    const department = form.department.value;
+    const userInfo = {
+      country,
+      university,
+      department,
+      phoneNumber,
+    };
+    // console.log(userInfo);
+
+    try {
+      // Update the firebase profile
+      updateUser({
+        displayName,
+        photoURL,
       });
+      // Update the mongodb user info
+      const res = await axiosSecure.patch(`/users/${userData._id}`, userInfo);
+      console.log(res);
+      if (res.data.success) {
+        toast.success("User updated successfully. Please refresh to see the updated data.");
+      } else {
+        toast.info("No changes were made");
+      }
+
+      setUser({ ...user, displayName, photoURL });
+      setShowModal(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
   // Info Items
   const InfoItem = ({ icon, label, value, isUpper }) => (
@@ -60,11 +88,12 @@ const MyProfile = () => {
     </div>
   );
 
-  if (loading) {
+  if (loading || isLoading) {
     return <Loader></Loader>;
   } else {
     return (
       <div className="min-h-screen p-4">
+        <ToastContainer />
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -150,27 +179,27 @@ const MyProfile = () => {
               <InfoItem
                 icon={<FaMapMarkerAlt />}
                 label="Country"
-                value="Bangladesh"
+                value={userData?.country || "Bangladesh"}
               />
               <InfoItem
                 icon={<FaGraduationCap />}
                 label="University"
-                value="Chandpur Polytecnical Institute"
+                value={userData?.university || "Please add your university"}
               />
               <InfoItem
                 icon={<FaAward />}
                 label="Department"
-                value="Computer Science & Engineering"
+                value={userData?.department || "Please add your department"}
               />
               <InfoItem
                 icon={<FaCalendarAlt />}
                 label="Joined On"
-                value="January 15, 2024"
+                value={userData?.createdAt || "N/A"}
               />
               <InfoItem
                 icon={<FaPhoneAlt />}
                 label="Phone Number"
-                value="+880 1XXX-XXXXXX"
+                value={userData?.phoneNumber || "N/A"}
               />
               <InfoItem
                 icon={<FaUserTag />}
@@ -199,11 +228,11 @@ const MyProfile = () => {
               </div>
 
               <form onSubmit={handleUpdateProfile} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2  gap-5">
                   {/* Name */}
-                  <div className="form-control w-full">
-                    <label className="label font-bold text-xs uppercase text-base-content/60">
-                      Full Name
+                  <div className="form-control w-full space-x-1.5">
+                    <label className="label font-bold text-xs  uppercase text-base-content/60">
+                      Full Name :
                     </label>
                     <input
                       name="name"
@@ -216,9 +245,9 @@ const MyProfile = () => {
                   </div>
 
                   {/* Photo URL */}
-                  <div className="form-control w-full">
+                  <div className="form-control w-full space-x-1.5">
                     <label className="label font-bold text-xs uppercase text-base-content/60">
-                      Photo URL
+                      Photo URL :
                     </label>
                     <input
                       name="photo"
@@ -231,54 +260,59 @@ const MyProfile = () => {
                   </div>
 
                   {/* Phone Number */}
-                  <div className="form-control w-full">
+                  <div className="form-control w-full space-x-1.5">
                     <label className="label font-bold text-xs uppercase text-base-content/60">
-                      Phone Number
+                      Phone Number :
                     </label>
                     <input
                       name="phone"
                       type="tel"
-                      defaultValue={user?.phoneNumber || ""}
+                      defaultValue={userData?.phoneNumber || ""}
                       className="input input-bordered bg-base-200/50 focus:border-primary rounded-xl font-semibold"
                       placeholder="+880 1XXX-XXXXXX"
                     />
                   </div>
 
                   {/* Country */}
-                  <div className="form-control w-full">
+                  <div className="form-control w-full space-x-1.5">
                     <label className="label font-bold text-xs uppercase text-base-content/60">
-                      Country
+                      Country :
                     </label>
                     <input
                       name="country"
                       type="text"
-                      defaultValue="Bangladesh"
+                      defaultValue={userData?.country || "Bangladesh"}
                       className="input input-bordered bg-base-200/50 focus:border-primary rounded-xl font-semibold"
                     />
                   </div>
 
                   {/* University */}
-                  <div className="form-control w-full md:col-span-2">
+
+                  <div className="form-control w-full space-x-1.5 ">
                     <label className="label font-bold text-xs uppercase text-base-content/60">
-                      University / College
+                      University / College :
                     </label>
                     <input
                       name="university"
                       type="text"
-                      defaultValue="National University"
+                      defaultValue={
+                        userData?.university || "National University"
+                      }
                       className="input input-bordered bg-base-200/50 focus:border-primary rounded-xl font-semibold"
                     />
                   </div>
 
                   {/* Department */}
-                  <div className="form-control w-full md:col-span-2">
+                  <div className="form-control w-full space-x-1.5 ">
                     <label className="label font-bold text-xs uppercase text-base-content/60">
-                      Department
+                      Department :
                     </label>
                     <input
                       name="department"
                       type="text"
-                      defaultValue="Computer Science & Engineering"
+                      defaultValue={
+                        userData?.department || "Computer Science & Engineering"
+                      }
                       className="input input-bordered bg-base-200/50 focus:border-primary rounded-xl font-semibold"
                     />
                   </div>

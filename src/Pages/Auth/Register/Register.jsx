@@ -5,6 +5,7 @@ import axios from "axios";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import useSecure from "../../../Hooks/useSecure/useSecure";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
   const { createUser, updateUser } = useAuth();
@@ -19,6 +20,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  // Upload the photo to ImageBB and get the public url
   const uploadToImgBB = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
@@ -31,6 +33,7 @@ const Register = () => {
     return res.data.data.url;
   };
 
+  // Register the user
   const handleRegistration = async (data) => {
     try {
       setLoading(true);
@@ -41,25 +44,26 @@ const Register = () => {
       // 2. Upload Image to ImgBB
       const imageURL = await uploadToImgBB(data.photo[0]);
 
-      // 3. Save User Info in Database
+      // 3.collect the info that you will save in the database
       const userInfo = {
         displayName: data.name,
         email: data.email,
         photoURL: imageURL,
         role: "student",
       };
-
+      // 4. Save User Info in MongoDB Database
       const dbRes = await axiosSecure.post("/users", userInfo);
+      if (dbRes) {
+        toast("Thanks for Registration.");
+      }
 
-      // 4. Update Firebase Profile
+      // 5. collect the info that will save in firebase
       const profile = {
         displayName: data.name,
         photoURL: imageURL,
       };
-
+      //6.Update Firebase information
       await updateUser(profile);
-
-      console.log("Registration Success:", dbRes.data);
 
       navigate(location.state || "/");
     } catch (error) {
@@ -71,6 +75,7 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
+      <ToastContainer />
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="text-2xl font-semibold text-center py-4">

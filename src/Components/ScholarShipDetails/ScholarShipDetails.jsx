@@ -205,7 +205,7 @@ const ScholarShipDetails = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
+            {reviews.map((review) => (
               <motion.div
                 key={review._id}
                 initial={{ opacity: 0, scale: 0.9 }}

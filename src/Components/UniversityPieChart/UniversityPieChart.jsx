@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Premium Color Palette: আধুনিক এবং সফট কালার সেট
+// Premium Color Palette
 const COLORS = [
   "#0ea5e9", // Primary Sky
   "#8b5cf6", // Violet
@@ -42,7 +42,7 @@ const UniversityPieChart = ({ universityData }) => {
       <div style={{ width: "100%", height: 350 }}>
         <ResponsiveContainer>
           <PieChart>
-            {/* Doughnut Style Pie: innerRadius যোগ করা হয়েছে প্রিমিয়াম লুকের জন্য */}
+            {/* Doughnut Style Pie */}
             <Pie
               data={pieChartData}
               dataKey="value"
@@ -53,7 +53,7 @@ const UniversityPieChart = ({ universityData }) => {
               outerRadius={110}
               paddingAngle={5}
               stroke="none"
-              label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+              label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
             >
               {pieChartData.map((entry, index) => (
                 <Cell
