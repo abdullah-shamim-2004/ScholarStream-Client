@@ -1,96 +1,187 @@
 # 🎓 Scholarship Management System
 
-A full-stack web application that helps students discover scholarships, apply securely, and manage applications, while allowing admins and moderators to control and verify scholarship data efficiently.
+**A full-stack MERN platform connecting students with global scholarships through secure applications and role-based management.**
 
 ---
 
-## 🔗 [Live Website](https://scholar-stream-client.netlify.app/)
+## 🔗 Live Demo
 
----
-
-## 🎯 Project Purpose
-
-The Scholarship Management System is designed to:
-
-- Help students easily find and apply for global scholarships
-- Provide secure online payments for applications
-- Allow admins and moderators to manage scholarships and applications
-- Maintain transparency and efficiency in scholarship processing
+- **Live Site:** [scholar-stream](https://scholar-stream-client.netlify.app/)
+- **Server Repo:** [GitHub - Server](https://github.com/yourusername/scholar-stream-server)
 
 ---
 
 ## ✨ Key Features
 
-### 👩‍🎓 Student Features
-
-- Browse and search scholarships
-- View detailed scholarship information
-- Apply for scholarships
-- Secure payment system using Stripe
-- View application status (Paid / Unpaid / Pending)
-- Retry payment if payment fails
-
-### 🧑‍💼 Admin Features
-
-- Add, update, and delete scholarships
-- Manage users and assign roles (Admin / Moderator / Student)
-- View all applications
-- Approve or reject applications
-
-### 🛡️ Moderator Features
-
-- Review scholarship listings
-- Approve or reject scholarships submitted by users
-- Ensure data accuracy and quality
-
-### 💳 Payment System
-
-- Stripe Checkout integration
-- Payment success & payment failure handling
-- Automatic application saving on payment failure
-- Secure payment records
+- 🔐 **Role-Based Access Control** — Three-tier system (Student / Moderator / Admin) with JWT + Firebase Auth
+- 💳 **Stripe Payment Integration** — Secure checkout with automatic retry on payment failure
+- 📊 **Admin Dashboard** — Manage scholarships, users, and applications with full CRUD operations
+- 🔍 **Advanced Search & Filters** — Find scholarships by category, deadline, country, and funding amount
+- ✅ **Application Tracking** — Real-time status updates (Pending / Paid / Approved / Rejected)
+- 🛡️ **Moderator Review System** — Quality control for scholarship listings before publication
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-### Frontend
-
-- React
-- React Router
-- TanStack Query (React Query)
-- Axios
-- Tailwind CSS
-- DaisyUI
-- React Hook Form
-- React Icons
-
-### Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- JWT Authentication
-- Stripe API
-
-### Authentication & Security
-
-- Firebase Authentication
-- JSON Web Token (JWT)
-- Role-based access control (Admin / Moderator / Student)
+| Layer | Technologies |
+|:---|:---|
+| **Frontend** | React, React Router, TanStack Query, Tailwind CSS, DaisyUI |
+| **Backend** | Node.js, Express.js, MongoDB |
+| **Authentication** | Firebase Auth |
+| **Payment** | Stripe API |
+| **Deployment** | Netlify (Client), Vercel (Server) |
 
 ---
 
-## 📦 NPM Packages Used
+## 📸 Screenshots
 
-### Frontend
+### Banner
+![Banner](/public/Home.png)
+*Explore the scholarStream.*
+### Home Page
+![Home Page](/public/all-scholarship.png)
+*Browse featured scholarships with search and filter options*
 
-react
-react-router-dom
-@tanstack/react-query
-axios
-react-hook-form
-react-icons
-firebase
-tailwindcss
-daisyui
+### Scholarship Details
+![Scholarship Details](/public/details.png)
+*Detailed view with eligibility, deadlines, and application requirements*
+
+### Payment Flow
+![Stripe Checkout](/public/payment.png)
+*Secure payment processing with Stripe*
+
+### Admin Dashboard
+![Admin Dashboard](/public/admin.png)
+*Manage scholarships, users, and applications*
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (local or Atlas)
+- Stripe Account (for payment testing)
+- Firebase Project (for authentication)
+
+### Installation
+
+#### 1. Clone the repositories
+```bash
+# Client
+git clone https://github.com/abdullah-shamim-2004/ScholarStream-Client.git
+
+
+# Server
+git clone https://github.com/abdullah-shamim-2004/ScholarStream-Server.git
+
+```
+
+#### 2. Set up environment variables
+
+**Client `.env`** (create in root of client folder)
+```env
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
+VITE_API_URL=http://localhost:5000
+VITE_STRIPE_PUBLIC_KEY=your_stripe_publishable_key
+```
+
+**Server `.env`** (create in root of server folder)
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+STRIPE_SECRET=your_stripe_secret_key
+VITE_CLIENT_UR=http://localhost:5173
+FB_SERVICE_KEY=your_firebase_secret_key
+```
+
+> **Note:** See `.env.example` files in both repos for complete variable lists.
+
+#### 3. Run the application
+
+**Server** (Terminal 1)
+```bash
+cd scholar-stream-server
+npm run dev
+# Server runs on http://localhost:3000
+```
+
+**Client** (Terminal 2)
+```bash
+cd scholar-stream-client
+npm run dev
+# Client runs on http://localhost:5173
+```
+
+#### 4. Test with sample data
+- Default admin credentials are in `server/config/seedData.js` (or create your own admin from Firebase Console)
+- Use Stripe test card: `4242 4242 4242 4242`, any future date, any CVC
+
+---
+
+## 🔑 Environment Variables
+
+Both client and server require environment variables. **Never commit `.env` files.**
+
+**Files you need to create:**
+- `client/.env` (see `client/.env.example`)
+- `server/.env` (see `server/.env.example`)
+
+**Required keys:**
+- Firebase config (from Firebase Console)
+- MongoDB URI (from MongoDB Atlas or local)
+- Stripe keys (from Stripe Dashboard)
+- JWT secret (generate a random secure string)
+
+---
+
+
+## 🎯 Challenges & Solutions
+
+### Challenge 1: Payment Retry Logic
+**Problem:** Users losing application data on payment failure  
+**Solution:** Implemented automatic draft saving before Stripe redirect, allowing users to retry payment from their application dashboard
+
+### Challenge 2: Role-Based UI Rendering
+**Problem:** Complexity managing different UI states for 3 user roles  
+**Solution:** Created custom React hooks (`useRole`, `useAuth`) with context API for centralized role checking
+
+### Challenge 3: Real-time Application Status
+**Problem:** Users not seeing updated application status after admin actions  
+**Solution:** Integrated TanStack Query with aggressive cache invalidation and optimistic updates
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Abdullah Shamim**  
+MERN Stack Developer  
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://abdullah-shamim-portfolio.netlify.app/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdullah-shamim-patwary/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abdullahshamim884@gmail.com)
+
+---
+
+## 🙏 Acknowledgments
+
+- Stripe API for seamless payment integration
+- Firebase for authentication infrastructure
+- TanStack Query for efficient data fetching
+- DaisyUI for UI components
+
+---
+
+**⭐ If you found this project helpful, consider giving it a star!**
