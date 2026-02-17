@@ -7,7 +7,7 @@
 ## 🔗 Live Demo
 
 - **Live Site:** [scholar-stream](https://scholar-stream-client.netlify.app/)
-- **Server Repo:** [GitHub - Server](https://github.com/yourusername/scholar-stream-server)
+- **Server Repo:** [GitHub - Server](https://github.com/abdullah-shamim-2004/ScholarStream-Server)
 
 ---
 

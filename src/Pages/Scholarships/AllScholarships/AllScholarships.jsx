@@ -46,7 +46,7 @@ const AllScholarships = () => {
         page,
       });
       const res = await axiosInstance.get(
-        `/all-scholarships?${params.toString()}`
+        `/all-scholarships?${params.toString()}`,
       );
       return res.data;
     },
@@ -149,6 +149,9 @@ const AllScholarships = () => {
           {/* Optional: Reset Action Button */}
           <div className="lg:ml-2">
             <button
+              onClick={() => {
+                window.location.reload();
+              }}
               className="btn btn-ghost btn-circle hover:bg-error/10 hover:text-error transition-colors"
               title="Clear Filters"
             >
@@ -213,10 +216,9 @@ const AllScholarships = () => {
             >
               Refresh Search
             </button>
+            {/* logic to clear filters  */}
             <button
-              onClick={() => {
-                /* logic to clear filters */
-              }}
+              onClick={() => {}}
               className="btn btn-ghost hover:bg-base-200 px-8 rounded-2xl font-bold flex items-center gap-2"
             >
               <FaArrowLeft className="text-xs" /> Clear All Filters

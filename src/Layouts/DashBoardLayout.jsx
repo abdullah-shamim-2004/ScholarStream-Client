@@ -13,11 +13,12 @@ import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole/useRole";
 import { GoGraph } from "react-icons/go";
 import useAuth from "../Hooks/useAuth/useAuth";
+import Loader from "../Components/Loader/Loader";
 
 const DashBoardLayout = () => {
   const { role } = useRole();
   const { user, loading } = useAuth();
-
+  if (loading) return <Loader></Loader>;
   return (
     <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto bg-base-200/50 min-h-screen">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -34,7 +35,7 @@ const DashBoardLayout = () => {
               <FaSlidersH size={20} />
             </label>
           </div>
-
+          {/* Dashboard Logo */}
           <div className="flex-1 px-2 mx-2">
             <div className="flex items-center gap-3">
               <div className="bg-primary/10 p-2 rounded-lg lg:hidden">
@@ -49,7 +50,7 @@ const DashBoardLayout = () => {
             </div>
           </div>
 
-          {/* Profile & Notifications (Optional UI addition for premium feel) */}
+          {/* Profile */}
           <div className="flex-none gap-4">
             <div className="avatar placeholder online">
               <div className="bg-neutral text-neutral-content rounded-full w-10 ring ring-primary ring-offset-base-100 ring-offset-2">
