@@ -243,7 +243,7 @@ const AllScholarships = () => {
       <div className="flex gap-2 mt-6 justify-center">
         {page > 1 && (
           <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-            <GrPrevious />
+            <GrPrevious size={18} cursor={"pointer"} />
           </button>
         )}
 
@@ -251,7 +251,7 @@ const AllScholarships = () => {
           <button
             key={num}
             onClick={() => setPage(num + 1)}
-            className={page === num + 1 ? "bg-blue-500 px-1.5 text-white" : ""}
+            className={page === num + 1 ? "bg-blue-500 px-1.5 text-white" : "cursor-pointer"}
           >
             {num + 1}
           </button>
@@ -261,7 +261,7 @@ const AllScholarships = () => {
             disabled={page === totalPages}
             onClick={() => setPage(page + 1)}
           >
-            <GrNext />
+            <GrNext size={18} cursor={"pointer"} />
           </button>
         )}
       </div>
