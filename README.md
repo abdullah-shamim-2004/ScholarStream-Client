@@ -15,6 +15,7 @@
 
 - 🔐 **Role-Based Access Control** — Three-tier system (Student / Moderator / Admin) with JWT + Firebase Auth
 - 💳 **Stripe Payment Integration** — Secure checkout with automatic retry on payment failure
+- 🤖 **AI Chat Assistant** — Built-in Scholar AI powered by Groq (LLaMA 3) to help students find scholarships, write essays, and navigate the application process in real time
 - 📊 **Admin Dashboard** — Manage scholarships, users, and applications with full CRUD operations
 - 🔍 **Advanced Search & Filters** — Find scholarships by category, deadline, country, and funding amount
 - ✅ **Application Tracking** — Real-time status updates (Pending / Paid / Approved / Rejected)
@@ -30,6 +31,7 @@
 | **Backend** | Node.js, Express.js, MongoDB |
 | **Authentication** | Firebase Auth |
 | **Payment** | Stripe API |
+| **AI Chat** | Groq API |
 | **Deployment** | Netlify (Client), Vercel (Server) |
 
 ---
@@ -42,6 +44,9 @@
 ### Home Page
 ![Home Page](/public/all-scholarship.png)
 *Browse featured scholarships with search and filter options*
+### AI Chat
+![AI Chat](/public/Ai_Chat.png)
+*Explore the website with ai.*
 
 ### Scholarship Details
 ![Scholarship Details](/public/details.png)
@@ -90,6 +95,7 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
 VITE_FIREBASE_APP_ID=your_firebase_app_id
 VITE_API_URL=http://localhost:5000
 VITE_STRIPE_PUBLIC_KEY=your_stripe_publishable_key
+GROQ_API_KEY=groq_api
 ```
 
 **Server `.env`** (create in root of server folder)
