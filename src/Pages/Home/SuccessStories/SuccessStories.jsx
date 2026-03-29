@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion as Motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
+import { fadeUp } from "../../../utils/motionVariants";
 
 const SuccessStories = () => {
   const [storys, setStory] = useState([]);
@@ -33,11 +34,12 @@ const SuccessStories = () => {
           {storys.map((story, index) => (
             <Motion.div
               key={story.id || index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              {...fadeUp}
+              whileHover={{ y: -6 }}
+              transition={{
+                duration: 0.3,
+                delay: Math.min(index * 0.07, 0.25),
+              }}
               className="group relative bg-base-100 p-8 rounded-3xl shadow-sm border border-base-300 hover:border-primary/30 transition-all"
             >
               {/* Quote Icon Overlay */}

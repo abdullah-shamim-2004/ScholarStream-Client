@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaQuestionCircle, FaChevronRight, FaHeadset } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
+import { fadeUp, scaleIn, fadeIn } from "../../../utils/motionVariants";
 
 const FAQ = () => {
   const [faqs, setFaqs] = useState([]);
@@ -21,13 +22,12 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto px-6">
         {/* --- Header Section --- */}
         <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          <Motion.div
+            {...scaleIn}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-6"
           >
             <FaQuestionCircle className="text-sm" /> Help Center
-          </motion.div>
+          </Motion.div>
 
           <h2 className="text-4xl md:text-6xl font-black text-base-content tracking-tighter mb-6">
             Common <span className="text-primary">Inquiries.</span>
@@ -50,11 +50,12 @@ const FAQ = () => {
             </div>
           ) : (
             faqs.map((ques, index) => (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                viewport={{ once: true }}
+              <Motion.div
+                {...fadeUp}
+                transition={{
+                  duration: 0.4,
+                  delay: Math.min(index * 0.05, 0.25),
+                }}
                 key={ques.id || index}
                 className="group"
               >
@@ -77,15 +78,14 @@ const FAQ = () => {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))
           )}
         </div>
 
         {/* --- Post-FAQ Support Card --- */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <Motion.div
+          {...fadeIn}
           className="mt-20 p-10 bg-base-100 rounded-[3rem] border border-base-300 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden"
         >
           {/* Subtle Background Icon */}
@@ -103,7 +103,7 @@ const FAQ = () => {
           <button className="btn btn-primary btn-lg rounded-2xl px-10 text-white font-black shadow-xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all relative z-10">
             Contact Support
           </button>
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   );
