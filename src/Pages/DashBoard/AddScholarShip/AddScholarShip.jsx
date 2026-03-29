@@ -91,12 +91,12 @@ const AddScholarShip = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-2">
+            <div className="flex flex-col gap-8 px-2">
               {/* Scholarship Name */}
               <div className="form-control">
-                <label className="label">
+                <label className="label mr-2">
                   <span className="label-text font-bold text-base-content/70">
-                    Scholarship Name
+                    Scholarship Name: 
                   </span>
                 </label>
                 <input
@@ -113,9 +113,9 @@ const AddScholarShip = () => {
 
               {/* University Name */}
               <div className="form-control">
-                <label className="label">
+                <label className="label mr-2">
                   <span className="label-text font-bold text-base-content/70">
-                    University Name
+                    University Name: 
                   </span>
                 </label>
                 <input
@@ -133,8 +133,8 @@ const AddScholarShip = () => {
               {/* Image URL */}
               <div className="form-control md:col-span-2">
                 <label className="label">
-                  <span className="label-text font-bold text-base-content/70">
-                    Thumbnail URL
+                  <span className="label-text mr-2 font-bold text-base-content/70">
+                    Thumbnail URL: 
                   </span>
                 </label>
                 <input
@@ -158,11 +158,11 @@ const AddScholarShip = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2">
+            <div className="grid grid-cols-1  gap-6 px-2">
               {/* Country */}
               <div className="form-control">
-                <label className="label text-xs font-bold text-base-content/50 uppercase">
-                  Country
+                <label className="label text-xs mr-2 font-bold text-base-content/50 uppercase">
+                  Country: 
                 </label>
                 <input
                   type="text"
@@ -173,8 +173,8 @@ const AddScholarShip = () => {
 
               {/* Subject Category */}
               <div className="form-control">
-                <label className="label text-xs font-bold text-base-content/50 uppercase">
-                  Category
+                <label className="label text-xs mr-2 font-bold text-base-content/50 uppercase">
+                  Category: 
                 </label>
                 <select
                   className="select select-bordered bg-base-200/50 rounded-xl"
@@ -188,8 +188,8 @@ const AddScholarShip = () => {
 
               {/* Degree Level */}
               <div className="form-control">
-                <label className="label text-xs font-bold text-base-content/50 uppercase">
-                  Degree
+                <label className="label text-xs mr-2 font-bold text-base-content/50 uppercase">
+                  Degree: 
                 </label>
                 <select
                   className="select select-bordered bg-base-200/50 rounded-xl"
@@ -214,10 +214,10 @@ const AddScholarShip = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               <div className="form-control">
-                <label className="label text-xs font-black opacity-50 uppercase">
-                  Application Fee
+                <label className="label text-xs mr-2 font-black opacity-50 uppercase">
+                  Application Fee: 
                 </label>
                 <input
                   type="number"
@@ -226,8 +226,8 @@ const AddScholarShip = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label text-xs font-black opacity-50 uppercase">
-                  Service Charge
+                <label className="label text-xs mr-2 font-black opacity-50 uppercase">
+                  Service Charge: 
                 </label>
                 <input
                   type="number"
@@ -236,8 +236,8 @@ const AddScholarShip = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label text-xs font-black opacity-50 uppercase">
-                  Deadline
+                <label className="label text-xs mr-2 font-black opacity-50 uppercase">
+                  Deadline: 
                 </label>
                 <input
                   type="date"

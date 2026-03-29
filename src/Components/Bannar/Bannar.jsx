@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 import useAuth from "../../Hooks/useAuth/useAuth";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaSearch,
-  FaGraduationCap,
-  FaGlobe,
-  FaAward,
-  FaUsers,
-} from "react-icons/fa";
+import {motion, AnimatePresence } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
 import Button from "../../Pages/Shared/Button/Button";
 
 const BookBanner = () => {
@@ -16,12 +10,7 @@ const BookBanner = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
 
-  // const scholarshipStats = [
-  //   { icon: FaGraduationCap, value: "15K+", label: "Scholarships" },
-  //   { icon: FaGlobe, value: "120+", label: "Countries" },
-  //   { icon: FaAward, value: "$2.5B", label: "Awarded" },
-  //   { icon: FaUsers, value: "50K+", label: "Students Helped" },
-  // ];
+
 
   const bookPages = [
     {
@@ -117,20 +106,6 @@ const BookBanner = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Badge */}
-            {/* <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring" }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white text-xs font-bold uppercase tracking-wider mb-8 shadow-lg"
-            >
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
-              </span>
-              2026 Applications Now Open
-            </motion.div> */}
-
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] text-base-content mb-6">
               Your Dream
@@ -167,27 +142,6 @@ const BookBanner = () => {
                 </Link>
               )}
             </div>
-
-            {/* Stats Grid */}
-            {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {scholarshipStats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <stat.icon className="text-3xl text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-black text-base-content">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-base-content/60 font-semibold uppercase tracking-wider">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div> */}
           </motion.div>
 
           {/* Right Side - 3D Book */}
@@ -354,23 +308,6 @@ const BookBanner = () => {
                   clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)",
                 }}
               />
-
-              {/* Floating Icons */}
-              {/* <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-8 -left-8 w-20 h-20 bg-primary rounded-2xl flex items-center justify-center shadow-xl hidden lg:flex"
-              >
-                <FaGraduationCap className="text-3xl text-white" />
-              </motion.div> */}
-              {/* 
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                className="absolute -bottom-8 -right-8 w-20 h-20 bg-secondary rounded-2xl flex items-center justify-center shadow-xl hidden lg:flex"
-              >
-                <FaAward className="text-3xl text-white" />
-              </motion.div> */}
             </div>
           </motion.div>
         </div>

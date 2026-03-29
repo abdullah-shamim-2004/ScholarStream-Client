@@ -30,7 +30,7 @@ const Footer = () => {
               <FaXTwitter />
             </a>
             <a
-              href="mailto:contact@scholarhub.com"
+              href="mailto:abdullahshamim884@gmail.com"
               className="hover:text-primary"
             >
               <FaEnvelope />
@@ -53,7 +53,6 @@ const Footer = () => {
         </div>
 
         {/* Resources */}
-
         <div>
           <h6 className="footer-title text-primary">Resources</h6>
 
@@ -61,9 +60,6 @@ const Footer = () => {
             How to Apply
           </HashLink>
 
-          {/* <HashLink smooth to="/#guides" className="link link-hover">
-            Scholarship Guides
-          </HashLink> */}
 
           <Link to="/dashboard/my-applications" className="link link-hover">
             My Applications

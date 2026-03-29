@@ -119,6 +119,7 @@ const DashBoardLayout = () => {
                   </span>
                 </div>
                 <li>
+                  {/* add ScholarShip */}
                   <NavLink
                     to="/dashboard/add-scholarship"
                     className="flex items-center gap-3 py-3 rounded-xl"
@@ -127,6 +128,7 @@ const DashBoardLayout = () => {
                     <span className="font-semibold">Add Scholarship</span>
                   </NavLink>
                 </li>
+                {/* Manage scholarship */}
                 <li>
                   <NavLink
                     to="/dashboard/manage-scholarship"
@@ -136,6 +138,7 @@ const DashBoardLayout = () => {
                     <span className="font-semibold">Manage Scholarship</span>
                   </NavLink>
                 </li>
+                {/* User Control */}
                 <li>
                   <NavLink
                     to="/dashboard/users-managment"
@@ -145,6 +148,7 @@ const DashBoardLayout = () => {
                     <span className="font-semibold">User Control</span>
                   </NavLink>
                 </li>
+                {/* Analytics */}
                 <li>
                   <NavLink
                     to="/dashboard/data-analytics"
@@ -162,9 +166,10 @@ const DashBoardLayout = () => {
               <>
                 <div className="mt-6 mb-2 px-4">
                   <span className="text-[10px] font-black text-base-content/40 uppercase tracking-[0.2em]">
-                    Operations
+                    Moderator
                   </span>
                 </div>
+                {/* All Application */}
                 <li>
                   <NavLink
                     to="/dashboard/all-applications"
@@ -174,6 +179,7 @@ const DashBoardLayout = () => {
                     <span className="font-semibold">Applications</span>
                   </NavLink>
                 </li>
+                {/* All Reviews */}
                 <li>
                   <NavLink
                     to="/dashboard/all-reviews"
@@ -192,6 +198,7 @@ const DashBoardLayout = () => {
                 Student Portal
               </span>
             </div>
+            {/* My Applications */}
             <li>
               <NavLink
                 to="/dashboard/my-applications"
@@ -201,6 +208,7 @@ const DashBoardLayout = () => {
                 <span className="font-semibold">My Submissions</span>
               </NavLink>
             </li>
+            {/* Feedback */}
             <li>
               <NavLink
                 to="/dashboard/my-reviews"
