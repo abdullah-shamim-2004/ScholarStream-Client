@@ -44,6 +44,9 @@
 ### Home Page
 ![Home Page](/public/all-scholarship.png)
 *Browse featured scholarships with search and filter options*
+### Admin Dashboard
+![Admin Dashboard](/src/assets/admin_dashboard.gif)
+*Manage scholarships, users, and applications*
 ### AI Chat
 ![AI Chat](/public/Ai_Chat.png)
 *Explore the website with ai.*
@@ -56,9 +59,7 @@
 ![Stripe Checkout](/public/payment.png)
 *Secure payment processing with Stripe*
 
-### Admin Dashboard
-![Admin Dashboard](/public/admin.png)
-*Manage scholarships, users, and applications*
+
 
 ---
 
