@@ -6,7 +6,8 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { Link } from "react-router";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
+import { fadeUp, fadeIn, scaleIn } from "../../utils/motionVariants";
 
 const AboutUs = () => {
   return (
@@ -15,48 +16,37 @@ const AboutUs = () => {
       <section className="relative py-24 px-6 md:px-16 lg:px-32 flex flex-col items-center text-center">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-gradient-to-b from-primary/5 to-transparent -z-10" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <Motion.div
+          {...scaleIn}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-8"
         >
           Our Story
-        </motion.div>
+        </Motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+        <Motion.h1
+          {...fadeUp}
+          transition={{ duration: 0.4, delay: 0.1 }}
           className="text-5xl md:text-7xl font-black text-base-content tracking-tighter mb-8 max-w-4xl"
         >
           Democratizing <span className="text-primary italic">Global</span>{" "}
           Education.
-        </motion.h1>
+        </Motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+        <Motion.p
+          {...fadeUp}
+          transition={{ duration: 0.4, delay: 0.2 }}
           className="text-base-content/60 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed"
         >
           ScholarStream is more than a platform—it's a gateway. We make
           scholarships accessible, transparent, and seamless for every ambitious
           student worldwide.
-        </motion.p>
+        </Motion.p>
       </section>
 
       {/* --- Mission Section --- */}
       <section className="px-6 md:px-16 lg:px-32 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
+          <Motion.div {...fadeUp} className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-black tracking-tight text-base-content leading-tight">
               A Mission to Remove <br />
               <span className="text-primary underline decoration-primary/20 underline-offset-8">
@@ -89,21 +79,16 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+          <Motion.div {...fadeIn} className="relative">
             <div className="absolute -inset-4 bg-primary/10 rounded-[2.5rem] blur-2xl -z-10" />
             <img
               src="https://images.pexels.com/photos/3184713/pexels-photo-3184713.jpeg"
               alt="Collaboration"
               className="rounded-[2rem] shadow-2xl object-cover aspect-video lg:aspect-square"
             />
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
@@ -132,9 +117,11 @@ const AboutUs = () => {
                 desc: "No hidden agendas. Only verified and updated data you can trust.",
               },
             ].map((value, idx) => (
-              <motion.div
+              <Motion.div
                 key={idx}
-                whileHover={{ y: -10 }}
+                {...fadeUp}
+                transition={{ duration: 0.4, delay: Math.min(idx * 0.1, 0.25) }}
+                whileHover={{ y: -6 }} // ✅ was: y: -10, reduced to -6 (subtler)
                 className="p-10 rounded-[2.5rem] bg-base-100 border border-base-300 shadow-xl shadow-base-content/5 flex flex-col items-center group transition-all"
               >
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-3xl mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-inner">
@@ -144,7 +131,7 @@ const AboutUs = () => {
                 <p className="text-base-content/50 leading-relaxed font-medium text-sm">
                   {value.desc}
                 </p>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>
@@ -163,7 +150,7 @@ const AboutUs = () => {
           {[
             {
               img: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
-              name: "Abdullah Shamim",
+              name: "Xhamim",
               role: "Founder & CEO",
             },
             {
@@ -177,12 +164,10 @@ const AboutUs = () => {
               role: "Student Support",
             },
           ].map((member, idx) => (
-            <motion.div
+            <Motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              {...fadeUp}
+              transition={{ duration: 0.4, delay: Math.min(idx * 0.1, 0.25) }}
               className="group"
             >
               <div className="relative overflow-hidden rounded-[2.5rem] mb-6 aspect-square grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
@@ -203,18 +188,14 @@ const AboutUs = () => {
               <p className="text-base-content/40 font-bold uppercase text-[10px] tracking-[0.2em] mt-1">
                 {member.role}
               </p>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
       </section>
 
       {/* --- Final CTA --- */}
       <section className="px-6 md:px-16 lg:px-32 pb-24">
-        <motion.div
-          whileHover={{ scale: 1.01 }}
-          className="bg-primary p-12 md:p-20 rounded-[3rem] text-center text-white relative overflow-hidden group shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] shadow-primary/30"
-        >
-          {/* Decorative Circles */}
+        <div className="bg-primary p-12 md:p-20 rounded-[3rem] text-center text-white relative overflow-hidden shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] shadow-primary/30">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full -ml-32 -mb-32 blur-3xl" />
 
@@ -233,7 +214,7 @@ const AboutUs = () => {
             Explore Now{" "}
             <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
           </Link>
-        </motion.div>
+        </div>
       </section>
     </div>
   );

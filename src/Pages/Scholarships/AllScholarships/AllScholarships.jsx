@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { FaGlobe, FaUniversity } from "react-icons/fa";
 import ScholarShipCard from "../../../Components/ScholarShipCard/ScholarShipCard";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../Hooks/useAxios/useAxios";
@@ -68,7 +67,7 @@ const AllScholarships = () => {
   if (error) return <h2>{error}</h2>;
 
   return (
-    <div className="px-4 py-10">
+    <div className="px-4 py-10 ">
       {/* Top Filter Bar */}
       <div className="bg-base-100/80 backdrop-blur-md p-4 md:p-6 my-8 rounded-[2rem] shadow-2xl shadow-base-300/20 border border-base-200">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row items-center justify-between gap-4">
@@ -88,6 +87,7 @@ const AllScholarships = () => {
           {/* Search bar - Grows to fill space */}
           <div className="relative w-full lg:flex-1">
             <input
+              value={search}
               onChange={handleSearch}
               type="text"
               placeholder="Search scholarships..."
@@ -99,12 +99,11 @@ const AllScholarships = () => {
           <div className="hidden lg:block h-10 w-[1px] bg-base-300 mx-2"></div>
           <div className="w-full lg:w-44">
             <select
+              value={subject}
               onChange={handleFiter}
               className="select select-bordered bg-base-200/50 border-none rounded-2xl w-full h-12 shadow-inner font-semibold text-sm"
             >
-              <option disabled selected>
-                Subject Category
-              </option>
+              <option value="">Subject Category</option>
               <option value="STEM">STEM</option>
               <option value="General">General</option>
               <option value="Engineering">Engineering</option>
@@ -118,12 +117,11 @@ const AllScholarships = () => {
           <div className="hidden lg:block h-10 w-[1px] bg-base-300 mx-2"></div>
           <div className="w-full lg:w-44">
             <select
+              value={degree}
               onChange={(e) => setDegree(e.target.value)}
               className="select select-bordered bg-base-200/50 border-none rounded-2xl w-full h-12 shadow-inner font-semibold text-sm"
             >
-              <option disabled selected>
-                Degree
-              </option>
+              <option value="">Degree</option>
               <option value="Undergraduate">Undergraduate</option>
               <option value="Graduate">Graduate</option>
             </select>
@@ -133,12 +131,11 @@ const AllScholarships = () => {
           <div className="hidden lg:block h-10 w-[1px] bg-base-300 mx-2"></div>
           <div className="w-full lg:w-44">
             <select
+              value={country}
               onChange={(e) => setCountry(e.target.value)}
               className="select select-bordered bg-base-200/50 border-none rounded-2xl w-full h-12 shadow-inner font-semibold text-sm"
             >
-              <option disabled selected>
-                Country
-              </option>
+              <option value="">Country</option>
               <option value="USA">USA</option>
               <option value="UK">UK</option>
               <option value="Canada">Canada</option>
@@ -150,7 +147,12 @@ const AllScholarships = () => {
           <div className="lg:ml-2">
             <button
               onClick={() => {
-                window.location.reload();
+                setSearch("");
+                setDebouncedSearch("");
+                setCountry("");
+                setSubject("");
+                setDegree("");
+                setPage(1);
               }}
               className="btn btn-ghost btn-circle hover:bg-error/10 hover:text-error transition-colors"
               title="Clear Filters"
@@ -218,7 +220,14 @@ const AllScholarships = () => {
             </button>
             {/* logic to clear filters  */}
             <button
-              onClick={() => {}}
+              onClick={() => {
+                setSearch("");
+                setDebouncedSearch("");
+                setCountry("");
+                setSubject("");
+                setDegree("");
+                setPage(1);
+              }}
               className="btn btn-ghost hover:bg-base-200 px-8 rounded-2xl font-bold flex items-center gap-2"
             >
               <FaArrowLeft className="text-xs" /> Clear All Filters
@@ -251,7 +260,11 @@ const AllScholarships = () => {
           <button
             key={num}
             onClick={() => setPage(num + 1)}
-            className={page === num + 1 ? "bg-blue-500 px-1.5 text-white" : "cursor-pointer"}
+            className={
+              page === num + 1
+                ? "bg-blue-500 px-1.5 text-white"
+                : "cursor-pointer"
+            }
           >
             {num + 1}
           </button>

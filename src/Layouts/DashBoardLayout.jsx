@@ -1,7 +1,7 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaRegFileAlt, FaSlidersH, FaUser, FaUserCircle } from "react-icons/fa";
-import { IoMdHome, IoMdSettings } from "react-icons/io";
+import { IoMdHome } from "react-icons/io";
 import { MdEditDocument, MdSchool } from "react-icons/md";
 import {
   RiChatSettingsFill,
@@ -14,6 +14,7 @@ import useRole from "../Hooks/useRole/useRole";
 import { GoGraph } from "react-icons/go";
 import useAuth from "../Hooks/useAuth/useAuth";
 import Loader from "../Components/Loader/Loader";
+import { AnimatePresence, motion as Motion } from "framer-motion";
 
 const DashBoardLayout = () => {
   const { role } = useRole();
@@ -66,7 +67,17 @@ const DashBoardLayout = () => {
 
         {/* --- PAGE CONTENT --- */}
         <main className="p-6 flex-grow">
-          <Outlet />
+          <AnimatePresence mode="wait">
+            <Motion.div
+              key={location.pathname} // 👈 changes on every sidebar click
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
+              <Outlet />
+            </Motion.div>
+          </AnimatePresence>
         </main>
       </div>
 

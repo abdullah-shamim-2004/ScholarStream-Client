@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 import useAuth from "../../Hooks/useAuth/useAuth";
-import {motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 import Button from "../../Pages/Shared/Button/Button";
 
@@ -9,8 +9,6 @@ const BookBanner = () => {
   const { user } = useAuth();
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
-
-
 
   const bookPages = [
     {
@@ -63,14 +61,6 @@ const BookBanner = () => {
       color: "from-green-500 to-teal-500",
     },
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handlePageTurn();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [currentPage]);
-
   const handlePageTurn = () => {
     setIsFlipping(true);
     setTimeout(() => {
@@ -78,6 +68,13 @@ const BookBanner = () => {
       setIsFlipping(false);
     }, 700);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handlePageTurn();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [currentPage]);
 
   const handleDotClick = (index) => {
     if (index !== currentPage && !isFlipping) {
@@ -101,7 +98,7 @@ const BookBanner = () => {
       <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -142,10 +139,10 @@ const BookBanner = () => {
                 </Link>
               )}
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Right Side - 3D Book */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -182,7 +179,7 @@ const BookBanner = () => {
 
                   {/* Flipping Page */}
                   <AnimatePresence mode="wait">
-                    <motion.div
+                    <Motion.div
                       key={currentPage}
                       initial={{ rotateY: 0 }}
                       animate={{ rotateY: isFlipping ? -180 : 0 }}
@@ -275,7 +272,7 @@ const BookBanner = () => {
                           transform: "rotateY(180deg)",
                         }}
                       ></div>
-                    </motion.div>
+                    </Motion.div>
                   </AnimatePresence>
 
                   {/* Book Edge Effect */}
@@ -300,16 +297,21 @@ const BookBanner = () => {
               </div>
 
               {/* Floating Bookmark */}
-              <motion.div
+              <Motion.div
                 animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 1.5,
+                  ease: "easeInOut",
+                }}
                 className="absolute -top-4 right-20 w-8 h-32 bg-gradient-to-b from-red-500 to-red-600 shadow-lg z-20"
                 style={{
                   clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)",
                 }}
               />
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
 

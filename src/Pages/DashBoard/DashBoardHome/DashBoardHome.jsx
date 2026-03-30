@@ -7,7 +7,6 @@ import {
   MdOutlineExplore,
 } from "react-icons/md";
 import { RiShieldUserFill } from "react-icons/ri";
-import { motion } from "framer-motion";
 import Loader from "../../../Components/Loader/Loader";
 
 const DashBoardHome = () => {
@@ -47,11 +46,7 @@ const DashBoardHome = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center p-6">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="relative w-full max-w-3xl overflow-hidden rounded-[2.5rem] bg-base-100 border border-base-200 shadow-2xl shadow-base-300/20"
-      >
+      <div className="relative w-full max-w-3xl overflow-hidden rounded-[2.5rem] bg-base-100 border border-base-200 shadow-2xl shadow-base-300/20">
         {/* Top Decorative Gradient Banner */}
         <div
           className={`h-32 w-full bg-gradient-to-r ${current.gradient} opacity-90`}
@@ -139,7 +134,7 @@ const DashBoardHome = () => {
             Account ID: {user?.uid?.slice(0, 8)}
           </p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

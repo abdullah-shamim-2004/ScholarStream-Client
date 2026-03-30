@@ -4,9 +4,7 @@
 import "./App.css";
 
 function App() {
-
-
-  return <>hi,hello</>;
+  return <>Welcome to ScholarStream Website.</>;
 }
 
 export default App;
