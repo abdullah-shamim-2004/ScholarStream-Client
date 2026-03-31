@@ -25,39 +25,76 @@
 
 ## 🛠️ Tech Stack
 
-| Layer | Technologies |
-|:---|:---|
-| **Frontend** | React, React Router, TanStack Query, Tailwind CSS, DaisyUI |
-| **Backend** | Node.js, Express.js, MongoDB |
-| **Authentication** | Firebase Auth |
-| **Payment** | Stripe API |
-| **AI Chat** | Groq API |
-| **Deployment** | Netlify (Client), Vercel (Server) |
+| Layer              | Technologies                                               |
+| :----------------- | :--------------------------------------------------------- |
+| **Frontend**       | React, React Router, TanStack Query, Tailwind CSS, DaisyUI |
+| **Backend**        | Node.js, Express.js, MongoDB                               |
+| **Authentication** | Firebase Auth                                              |
+| **Payment**        | Stripe API                                                 |
+| **AI Chat**        | Groq API                                                   |
+| **Deployment**     | Netlify (Client), Vercel (Server)                          |
 
 ---
 
 ## 📸 Screenshots
 
-### Banner
-![Banner](/public/Home.png)
-*Explore the scholarStream.*
-### Home Page
-![Home Page](/public/all-scholarship.png)
-*Browse featured scholarships with search and filter options*
+### Search, Filter and Pagination
+
+![All_Scholarships](/src/assets/user_searching.gif)
+
+- 🔍 **Search** — Keyword search with 400ms debounce, no page reload
+- 🎛️ **Filter** — By subject, degree level, and country (all filters work simultaneously)
+- 📄 **Pagination** — 8 per page, resets on filter change
+
+---
+
+### Student Payment Flow
+
+![Stripe Checkout](/src/assets/user_payment.gif)
+*Discover, apply, track, and review scholarships*
+
+- 🏫 **Scholarship Details** — View fees, deadlines, eligibility, and more
+- 💳 **Pay via Stripe** — Secure checkout; failed payment data saved in `localStorage` for retry
+- 📋 **My Applications** — Track fee status, application status, and moderator feedback
+- 🗑️ **Delete Application** — Only allowed while status is `Pending`
+- 💰 **Retry Payment** — Pay button appears for unpaid + pending applications
+- ⭐ **Add Review** — Submit star rating + comment once application is `Completed`
+- ✏️ **Edit/Delete Reviews** — Manage your own submitted reviews
+
+---
+###  Moderator
+![Modarator](/src/assets/modarator_dashboard.gif)
+*Review applications and manage scholarship quality*
+
+- 📂 **View All Applications** — See all users' applications with status and feedback
+- ✅ **Approve / Reject** — Instant status update via TanStack Query cache invalidation
+- 💬 **Send Feedback** — Message appears on student's dashboard
+- 🗂️ **View All Reviews** — See every review across all scholarships
+- 🗑️ **Delete Reviews** — Remove spam or inappropriate content
+- 🏫 **Manage Scholarships** — Edit or delete existing listings
+
+---
+
 ### Admin Dashboard
+
 ![Admin Dashboard](/src/assets/admin_dashboard.gif)
-*Manage scholarships, users, and applications*
+*Full platform control — users, scholarships, and analytics*
+
+- ➕ **Add Scholarship** — Full listing form (rank, fees, deadline, image, etc.)
+- ✏️ **Edit Scholarship** — Update any field anytime
+- 🗑️ **Delete Scholarship** — Permanent removal with confirmation
+- 👥 **View All Users** — Filter by role (Student / Moderator / Admin)
+- 🔑 **Promote to Moderator / Admin** — Elevate any user's role
+- 🔽 **Demote to Student** — Remove elevated privileges
+- 📊 **Analytics Dashboard** — Total users, scholarships, revenue + university pie chart
+- 🛡️ **All Moderator Capabilities** — Fully inherited
+
+---
+
 ### AI Chat
+
 ![AI Chat](/public/Ai_Chat.png)
-*Explore the website with ai.*
-
-### Scholarship Details
-![Scholarship Details](/public/details.png)
-*Detailed view with eligibility, deadlines, and application requirements*
-
-### Payment Flow
-![Stripe Checkout](/public/payment.png)
-*Secure payment processing with Stripe*
+_Explore the website with ai._
 
 ---
 
@@ -67,22 +104,20 @@
 
 ## Overview
 
-| # | Problem | Key Technology Used |
-|---|---------|---------------------|
-| 01 | Payment Data Lost on Stripe Failure | localStorage, Stripe API |
-| 02 | Role-Based UI Complexity Across 3 User Types | useRole() hook, React Context, Route Guards |
-| 03 | Stale Application Status After Admin Actions | TanStack Query, cache invalidation |
-| 04 | Advanced Search & Filter Without API Overload | Debounce, controlled inputs, URLSearchParams |
-| 05 | AI Chat Integration for Scholarship Guidance | Groq API, LLaMA 3, floating UI |
-| 06 | Oversized Components Mixing Logic and UI | Component decomposition, custom hooks |
-| 07 | CSS @import Order Causing PostCSS Build Error | PostCSS, CSS @import rules |
-| 08 | Heavy & Laggy Animations Across All Pages | Framer Motion, CSS transforms |
-
+| #   | Problem                                       | Key Technology Used                          |
+| --- | --------------------------------------------- | -------------------------------------------- |
+| 01  | Payment Data Lost on Stripe Failure           | localStorage, Stripe API                     |
+| 02  | Role-Based UI Complexity Across 3 User Types  | useRole() hook, React Context, Route Guards  |
+| 03  | Stale Application Status After Admin Actions  | TanStack Query, cache invalidation           |
+| 04  | Advanced Search & Filter Without API Overload | Debounce, controlled inputs, URLSearchParams |
+| 05  | AI Chat Integration for Scholarship Guidance  | Groq API, LLaMA 3, floating UI               |
+| 06  | Oversized Components Mixing Logic and UI      | Component decomposition, custom hooks        |
+| 07  | CSS @import Order Causing PostCSS Build Error | PostCSS, CSS @import rules                   |
+| 08  | Heavy & Laggy Animations Across All Pages     | Framer Motion, CSS transforms                |
 
 ---
 
 ## Detailed Breakdown
-
 
 ### 01 — Payment Data Lost on Stripe Failure
 
@@ -168,8 +203,8 @@ Moved the `@import url()` for Google Fonts to the very first line of `index.css`
 
 ---
 
-
 ---
+
 ### 08 — Heavy & Laggy Animations Across All Pages
 
 **⚠ Problem**
@@ -185,6 +220,7 @@ Created a centralized `motionVariants.js` file with shared `fadeUp`, `fadeIn`, a
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - MongoDB (local or Atlas)
 - Stripe Account (for payment testing)
@@ -193,6 +229,7 @@ Created a centralized `motionVariants.js` file with shared `fadeUp`, `fadeIn`, a
 ### Installation
 
 #### 1. Clone the repositories
+
 ```bash
 # Client
 git clone https://github.com/abdullah-shamim-2004/ScholarStream-Client.git
@@ -206,6 +243,7 @@ git clone https://github.com/abdullah-shamim-2004/ScholarStream-Server.git
 #### 2. Set up environment variables
 
 **Client `.env`** (create in root of client folder)
+
 ```env
 VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
@@ -219,6 +257,7 @@ GROQ_API_KEY=groq_api
 ```
 
 **Server `.env`** (create in root of server folder)
+
 ```env
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
@@ -232,6 +271,7 @@ FB_SERVICE_KEY=your_firebase_secret_key
 #### 3. Run the application
 
 **Server** (Terminal 1)
+
 ```bash
 cd scholar-stream-server
 npm run dev
@@ -239,6 +279,7 @@ npm run dev
 ```
 
 **Client** (Terminal 2)
+
 ```bash
 cd scholar-stream-client
 npm run dev
@@ -246,6 +287,7 @@ npm run dev
 ```
 
 #### 4. Test with sample data
+
 - Default admin credentials are in `server/config/seedData.js` (or create your own admin from Firebase Console)
 - Use Stripe test card: `4242 4242 4242 4242`, any future date, any CVC
 
@@ -256,10 +298,12 @@ npm run dev
 Both client and server require environment variables. **Never commit `.env` files.**
 
 **Files you need to create:**
+
 - `client/.env` (see `client/.env.example`)
 - `server/.env` (see `server/.env.example`)
 
 **Required keys:**
+
 - Firebase config (from Firebase Console)
 - MongoDB URI (from MongoDB Atlas or local)
 - Stripe keys (from Stripe Dashboard)
@@ -276,7 +320,7 @@ This project is licensed under the MIT License.
 ## 👨‍💻 Author
 
 **Abdullah Shamim**  
-MERN Stack Developer  
+MERN Stack Developer
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://abdullah-shamim-portfolio.netlify.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdullah-shamim-patwary/)
