@@ -93,9 +93,9 @@
 
 ### AI Chat
 
-![AI Chat](/public/Ai_Chat.png)
+![AI Chat](/src/assets/ai_window.gif)
 _Explore the website with ai._
-
+- 🤖 **Scholar AI** — Floating AI chat (Groq LLaMA 3) available on every page
 ---
 
 ## 🎯 Challenges & Solutions
